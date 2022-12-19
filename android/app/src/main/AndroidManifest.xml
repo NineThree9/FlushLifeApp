@@ -4,7 +4,7 @@
     <application
         android:name="com.xproject.health.MainApplication"
         android:icon="@mipmap/ic_launcher"
-        android:label="Flow"
+        android:label="FlushLife"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

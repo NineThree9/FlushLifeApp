@@ -16,7 +16,7 @@ class StringLocalizations {
   //根据不同locale.languageCode 加载不同语言对应
   static Map<String, Map<String, String>> _localizedValues = {
     'en': {
-      'app name': 'SunSpace',
+      'app name': 'FlushLife',
     }
   };
 
