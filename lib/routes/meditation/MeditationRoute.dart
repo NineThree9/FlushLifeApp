@@ -32,60 +32,87 @@ class _MeditationRouteState extends State<MeditationRoute> {
   var lastBufferedPosition = Duration();
 
   List<String> bgList = [
-    "imgs/sound/backgroud_sounds_1.jpg",
-    "imgs/sound/backgroud_sounds_2.jpg",
-    "imgs/sound/backgroud_sounds_3.jpg",
-    "imgs/sound/backgroud_sounds_4.jpg",
-    "imgs/sound/backgroud_sounds_5.jpg",
+    "imgs/meditation/1.jpg",
+    "imgs/meditation/2.jpg",
+    "imgs/meditation/3.jpg",
+    "imgs/meditation/4.jpg",
+    "imgs/meditation/5.jpg",
+    "imgs/meditation/6.jpg",
+    "imgs/meditation/7.jpg",
+    "imgs/meditation/8.jpg",
+    "imgs/meditation/9.jpg",
+    "imgs/meditation/10.jpg",
+
   ];
 
   int bg_index = 0;
   final _playlist = [
     LoopingAudioSource(
         child: AudioSource.uri(
-            Uri.parse("asset:///audio/Meditation.mp3"),
+            Uri.parse("asset:///audio/day1.mp3"),
             tag: AudioMetadata(
-                "正念冥想-1", "asset:///audio/Meditation.mp3")),
+                "正念冥想-1", "asset:///audio/day1.mp3")),
         count: 1),
     LoopingAudioSource(
         child: AudioSource.uri(
-            Uri.parse("asset:///audio/3 -Greek Meditation.mp3"),
+            Uri.parse("asset:///audio/day2.mp3"),
             tag: AudioMetadata(
-                "正念冥想-2", "asset:///audio/3 -Greek Meditation.mp3")),
-        count: 3),
-    LoopingAudioSource(
-        child: AudioSource.uri(Uri.parse("asset:///audio/4 - Thunder.mp3"),
-            tag: AudioMetadata("午后雷电", "asset:///audio/4 - Thunder.mp3")),
-        count: 30),
+                "正念冥想-2", "asset:///audio/day2.mp3")),
+        count: 1),
     LoopingAudioSource(
         child: AudioSource.uri(
-            Uri.parse("asset:///audio/7 - Walking in Snow.mp3"),
+            Uri.parse("asset:///audio/day3.mp3"),
             tag: AudioMetadata(
-                "正念冥想-3", "asset:///audio/7 - Walking in Snow.mp3")),
-        count: 30),
-    LoopingAudioSource(
-        child: AudioSource.uri(Uri.parse("asset:///audio/8 - Horse Eating.mp3"),
-            tag: AudioMetadata(
-                "正念冥想-4", "asset:///audio/8 - Horse Eating.mp3")),
-        count: 80),
-    LoopingAudioSource(
-        child: AudioSource.uri(Uri.parse("asset:///audio/9 - Evening .mp3"),
-            tag: AudioMetadata("夜半森林", "asset:///audio/9 - Evening .mp3")),
-        count: 14),
+                "正念冥想-3", "asset:///audio/day3.mp3")),
+        count: 1),
     LoopingAudioSource(
         child: AudioSource.uri(
-            Uri.parse("asset:///audio/10 - Farm Morning.mp3"),
+            Uri.parse("asset:///audio/day4.mp3"),
             tag: AudioMetadata(
-                "清晨农场", "asset:///audio/10 - Farm Morning.mp3")),
-        count: 9),
+                "正念冥想-4", "asset:///audio/day4.mp3")),
+        count: 1),
     LoopingAudioSource(
-        child: AudioSource.uri(Uri.parse("asset:///audio/11 - Crickets.mp3"),
-            tag: AudioMetadata("蟋蟀鸣叫", "asset:///audio/11 - Crickets.mp3")),
-        count: 14),
+        child: AudioSource.uri(
+            Uri.parse("asset:///audio/day5.mp3"),
+            tag: AudioMetadata(
+                "正念冥想-5", "asset:///audio/day5.mp3")),
+        count: 1),
     LoopingAudioSource(
-        child: AudioSource.uri(Uri.parse("asset:///audio/13 - Fire.mp3"),
-            tag: AudioMetadata("火焰燃烧", "asset:///audio/13 - Fire.mp3")),
-        count: 5),
+        child: AudioSource.uri(
+            Uri.parse("asset:///audio/day6.mp3"),
+            tag: AudioMetadata(
+                "正念冥想-6", "asset:///audio/day6.mp3")),
+        count: 1),
+    LoopingAudioSource(
+        child: AudioSource.uri(
+            Uri.parse("asset:///audio/day7.mp3"),
+            tag: AudioMetadata(
+                "正念冥想-7", "asset:///audio/day7.mp3")),
+        count: 1),
+    LoopingAudioSource(
+        child: AudioSource.uri(
+            Uri.parse("asset:///audio/day8.mp3"),
+            tag: AudioMetadata(
+                "正念冥想-8", "asset:///audio/day8.mp3")),
+        count: 1),
+    LoopingAudioSource(
+        child: AudioSource.uri(
+            Uri.parse("asset:///audio/day9.mp3"),
+            tag: AudioMetadata(
+                "正念冥想-9", "asset:///audio/day9.mp3")),
+        count: 1),
+    LoopingAudioSource(
+        child: AudioSource.uri(
+            Uri.parse("asset:///audio/day10.mp3"),
+            tag: AudioMetadata(
+                "正念冥想-10", "asset:///audio/day10.mp3")),
+        count: 1),
+    LoopingAudioSource(
+        child: AudioSource.uri(
+            Uri.parse("asset:///audio/day11.mp3"),
+            tag: AudioMetadata(
+                "正念冥想-11", "asset:///audio/day11.mp3")),
+        count: 1),
   ];
 
   Timer autoInvisible;

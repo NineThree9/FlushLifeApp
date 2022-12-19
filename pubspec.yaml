@@ -180,6 +180,16 @@ flutter:
       - imgs/breath/bg_bottom.png
 
       - config/dailyMotionSentence.json
+      - imgs/meditation/1.jpg
+      - imgs/meditation/2.jpg
+      - imgs/meditation/3.jpg
+      - imgs/meditation/4.jpg
+      - imgs/meditation/5.jpg
+      - imgs/meditation/6.jpg
+      - imgs/meditation/7.jpg
+      - imgs/meditation/8.jpg
+      - imgs/meditation/9.jpg
+      - imgs/meditation/10.jpg
 
       - audio/
 
