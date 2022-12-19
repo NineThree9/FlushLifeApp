@@ -71,6 +71,7 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
+  convex_bottom_bar: ^3.1.0+1
 
 
 flutter_icons:

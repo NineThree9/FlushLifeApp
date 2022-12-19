@@ -5,6 +5,7 @@ import 'package:health/report/ReportUtil.dart';
 import 'package:health/routes/App.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'common/EventConstants.dart';
+import 'package:health/routes/Total.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,5 +13,6 @@ Future<void> main() async {
   await ReportUtil.getInstance().reportProperties();
   ReportUtil.getInstance().trackEvent(eventName: EventConstants.app_enter);
   await PushManager.getInstance().init();
-  Global.init().then((value) => runApp(App())).then((value) => PushManager.getInstance().requestIosPermissions());
+  // Global.init().then((value) => runApp(App())).then((value) => PushManager.getInstance().requestIosPermissions());
+  Global.init().then((value) => runApp(MyApp())).then((value) => PushManager.getInstance().requestIosPermissions());
 }
