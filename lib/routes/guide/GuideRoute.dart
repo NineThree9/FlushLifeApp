@@ -197,7 +197,7 @@ class _GuideRouteState extends State<GuideRoute> {
                 padding:
                     EdgeInsets.symmetric(horizontal: 30.pt, vertical: 8.pt),
                 child: Text(
-                  "Get started",
+                  "开始",
                   style: TextStyle(
                       fontSize: 20.pt,
                       color: Colors.white,

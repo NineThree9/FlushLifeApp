@@ -207,44 +207,7 @@ class _HomeRouteState extends State<HomeRoute> {
                   )
                 ],
               ),
-              Container(
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      child: Container(
-                        alignment: Alignment.topRight,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              top:
-                                  12.35.pt + MediaQuery.of(context).padding.top,
-                              left: 20.pt,
-                              right: 35.13.pt,
-                              bottom: 10.pt),
-                          child: Image.asset("imgs/home/ic_feedback.png"),
-                        ),
-                      ),
-                      onTap: _onFeedback,
-                    ),
-                    GestureDetector(
-                      child: Container(
-                        alignment: Alignment.topRight,
-                        width: double.infinity,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.13),
-                          child: Text(
-                            "Feedback",
-                            style: TextStyle(
-                                color: const Color(0xFFFFFFFF).withOpacity(0.7),
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ),
-                      onTap: _onFeedback,
-                    )
-                  ],
-                ),
-              )
+
             ],
           ),
         )
