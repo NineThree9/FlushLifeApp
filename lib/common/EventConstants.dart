@@ -21,6 +21,7 @@ class EventConstants{
 
   static const String feeling_check ="feeling_check";
 
+  static const String meditation_click ="meditation_click";
   static const String sounds_click ="sounds_click";
   static const String sounds_back ="sounds_back";
   static const String sounds_pause ="sounds_pause";

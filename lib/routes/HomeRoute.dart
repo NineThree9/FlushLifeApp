@@ -14,6 +14,7 @@ import 'package:health/report/ReportUtil.dart';
 import 'package:health/routes/breath/BreathRoute.dart';
 import 'package:health/routes/selfAssessment/SelfAssessmentRoute.dart';
 import 'package:health/routes/sound/SoundRoute.dart';
+import 'package:health/routes/meditation/MeditationRoute.dart';
 import 'package:health/routes/breath/BreathSource.dart';
 import 'package:health/widget/SlideVerticalWidget.dart';
 import 'package:intl/intl.dart';
@@ -131,11 +132,14 @@ class _HomeRouteState extends State<HomeRoute> {
         child: BreathRoute(), settings: RouteSettings(arguments: map)));
   }
 
-  void _onFeedback() async {
+  void _onMeditation() {
     ReportUtil.getInstance()
-        .trackEvent(eventName: EventConstants.feedback_click);
-    FeedbackUtil.enterGoogleForm();
+        .trackEvent(eventName: EventConstants.meditation_click);
+    Navigator.of(context).push(
+        SlideVerticalRoute(child: MeditationRoute(), settings: RouteSettings()));
   }
+
+
 
   initData() async {
     nickName = await Global.getPref().getStorage(AssessmentEnterName.nickName);
@@ -445,6 +449,7 @@ class _HomeRouteState extends State<HomeRoute> {
                 fontWeight: FontWeight.w500),
           ),
           buildSoundItem(),
+          buildMeditationItem(),
           buildBreathItem()
         ],
       ),
@@ -486,7 +491,41 @@ class _HomeRouteState extends State<HomeRoute> {
       ),
     );
   }
-
+  buildMeditationItem() {
+    return GestureDetector(
+      onTap: _onMeditation,
+      child: Container(
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 16.51.pt),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("imgs/home/item_breath.png"),
+              fit: BoxFit.fitWidth),
+        ),
+        child: Stack(
+          children: [
+            Container(
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: 20.pt, right: 20.pt, top: 32.pt, bottom: 30.pt),
+                child: Text(
+                  "正念冥想",
+                  style: TextStyle(
+                      fontSize: 18.pt,
+                      color: const Color(0xFF333333),
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: Image.asset("imgs/home/ic_breath.png"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
   buildBreathItem() {
     return GestureDetector(
       onTap: _onBreathing,
