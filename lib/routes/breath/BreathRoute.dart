@@ -186,7 +186,7 @@ class _BreathRouteState extends State<BreathRoute>
           ),
           Container(
             child: _count == -1
-                ? Text("Relax",
+                ? Text("开始呼吸",
                     style: TextStyle(
                       fontSize: 22.pt,
                       fontWeight: FontWeight.w600,
@@ -203,15 +203,15 @@ class _BreathRouteState extends State<BreathRoute>
     String breathText;
     int time = _time % 12;
     if (_time >= _totalCount) {
-      breathText = "Breathe out";
+      breathText = "呼气";
     } else if (time < 5) {
-      breathText = "Breathe in";
+      breathText = "吸气";
     } else if (time < 7) {
-      breathText = "Hold";
+      breathText = "摒气";
     } else if (time < 12) {
-      breathText = "Breathe out";
+      breathText = "呼气";
     } else {
-      breathText = "Relax";
+      breathText = "开始呼吸";
     }
     return Text(
       breathText,
@@ -241,7 +241,7 @@ class _BreathRouteState extends State<BreathRoute>
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.pt, vertical: 10.pt),
           child: Text(
-            "Finish Earlier",
+            "提前结束",
             style: TextStyle(
                 color: Color(0xFF6274D2),
                 fontSize: 20.pt,

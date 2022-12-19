@@ -84,7 +84,7 @@ class _AssessmentThoughtState extends State<AssessmentThought> {
           margin: EdgeInsets.only(
               top: 52.pt, left: 38.pt, right: 38.pt, bottom: 51),
           child: Text(
-            "What about your thoughts?",
+            "你现在有什么想法?",
             textAlign: TextAlign.center,
             strutStyle: StrutStyle(leading: 0.9),
             style: TextStyle(

@@ -183,7 +183,7 @@ class _HomeRouteState extends State<HomeRoute> {
                           top: 12.35 + MediaQuery.of(context).padding.top,
                           right: 20.13),
                       child: Text(
-                        "Hi,$nickName",
+                        "你好啊,$nickName",
                         style: TextStyle(
                             color: const Color(0xFF333333),
                             fontSize: 28,
@@ -339,7 +339,7 @@ class _HomeRouteState extends State<HomeRoute> {
                             padding: EdgeInsets.symmetric(
                                 vertical: 7.pt, horizontal: 14.pt),
                             child: Text(
-                              "How do you feel?",
+                              "现在感觉如何?",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.pt,
@@ -404,7 +404,7 @@ class _HomeRouteState extends State<HomeRoute> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "My Feelings",
+            "我的感受记录",
             style: TextStyle(
                 fontSize: 20.pt,
                 color: const Color(0xFF000000),
@@ -418,8 +418,8 @@ class _HomeRouteState extends State<HomeRoute> {
 
   buildMoodCheckItems(FlowModel flowModel) {
     String feelingText = flowModel.feeling.isPositive
-        ? "I feel ${flowModel.feeling.feelingText}."
-        : "I feel ${flowModel.feeling.feelingText}, but I crushed my negative thoughts.";
+        ? "我感觉\"${flowModel.feeling.feelingText}\"."
+        : "我感觉\"${flowModel.feeling.feelingText}\",但是我冲刷掉了负面情绪.";
     return Container(
       margin: EdgeInsets.all(4.5.pt),
       width: 151.pt,
@@ -475,7 +475,7 @@ class _HomeRouteState extends State<HomeRoute> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Mindful Moment",
+            "正念时刻",
             style: TextStyle(
                 fontSize: 20.pt,
                 color: const Color(0xFF000000),
@@ -506,7 +506,7 @@ class _HomeRouteState extends State<HomeRoute> {
                 padding: EdgeInsets.only(
                     left: 20.pt, right: 20.pt, top: 32.pt, bottom: 30.pt),
                 child: Text(
-                  "Focus Sounds",
+                  "白噪音",
                   style: TextStyle(
                       fontSize: 18.pt,
                       color: const Color(0xFF333333),
@@ -542,7 +542,7 @@ class _HomeRouteState extends State<HomeRoute> {
                 padding: EdgeInsets.only(
                     left: 20.pt, right: 20.pt, top: 32.pt, bottom: 30.pt),
                 child: Text(
-                  "Breathing",
+                  "呼吸调节",
                   style: TextStyle(
                       fontSize: 18.pt,
                       color: const Color(0xFF333333),

@@ -54,7 +54,7 @@ class _SandTablePageState extends State<SandTablePage> {
                   margin: EdgeInsets.only(
                       top: 52.pt, left: 38.pt, right: 38.pt, bottom: 51),
                   child: Text(
-                    "These thoughts look like?",
+                    "你的情绪和下面哪一幅图片最相似呢?",
                     style: TextStyle(
                         fontSize: 20.pt,
                         color: Color(0xFF333333),
@@ -100,7 +100,7 @@ class _SandTablePageState extends State<SandTablePage> {
                       padding: EdgeInsets.symmetric(
                           horizontal: 40.pt, vertical: 10.pt),
                       child: Text(
-                        "That's it",
+                        "选择",
                         style: TextStyle(
                             fontSize: 20.pt,
                             color: Colors.white,

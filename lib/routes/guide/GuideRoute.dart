@@ -88,18 +88,18 @@ class _GuideRouteState extends State<GuideRoute> {
     List<BannerBean> bannerList = [
       BannerBean(
           bannerUrl: "imgs/guide/introduce1.png",
-          bannerTitle: "Know yourself",
-          bannerDesc: "Help check your feelings, thoughts and emotions."),
+          bannerTitle: "了解你自己",
+          bannerDesc: "帮助检查你的感受、想法和情绪"),
       BannerBean(
           bannerUrl: "imgs/guide/introduce2.png",
-          bannerTitle: "Reduce anxiety",
+          bannerTitle: "缓解你的负面情绪",
           bannerDesc:
-              "Learn to face and cope with the our thoughts, and care for our mental health."),
+              "学会如何应对应对我们的负面情绪，关心自己的心理健康"),
       BannerBean(
           bannerUrl: "imgs/guide/introduce3.png",
-          bannerTitle: "Be focus and relax",
+          bannerTitle: "保持松弛有度",
           bannerDesc:
-              "Natural sounds and deep breathing exercises let go of all the tension in your body."),
+              "白噪音和呼吸调节可以让你变得更好."),
     ];
     return bannerList;
   }
@@ -115,7 +115,7 @@ class _GuideRouteState extends State<GuideRoute> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.pt, horizontal: 26.pt),
               child: Text(
-                "We are still at an early stage of developing FLOW. Your feedback is greatly appreciated and very important to us. Free feel to try it out any time. Also, stay tune for more amazing features.😃",
+                "现在进入FlushAway的世界吧",
                 textAlign: TextAlign.center,
                 strutStyle: StrutStyle(leading: 1.4),
                 style: TextStyle(

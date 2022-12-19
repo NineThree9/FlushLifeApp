@@ -33,7 +33,9 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
+   compileOptions.encoding="GBK"
+
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -41,7 +43,7 @@ android {
 
     defaultConfig {
         applicationId "com.better.life.flow"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

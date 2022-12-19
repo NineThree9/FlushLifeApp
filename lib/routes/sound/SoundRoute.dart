@@ -45,46 +45,46 @@ class _SoundRouteState extends State<SoundRoute> {
         child: AudioSource.uri(
             Uri.parse("asset:///audio/2 - Stream Flowing.mp3"),
             tag: AudioMetadata(
-                "Stream Flowing", "asset:///audio/2 - Stream Flowing.mp3")),
+                "小溪流水", "asset:///audio/2 - Stream Flowing.mp3")),
         count: 11),
     LoopingAudioSource(
         child: AudioSource.uri(
             Uri.parse("asset:///audio/3 -Greek Meditation.mp3"),
             tag: AudioMetadata(
-                "Greek Meditation", "asset:///audio/3 -Greek Meditation.mp3")),
+                "悠扬笛声", "asset:///audio/3 -Greek Meditation.mp3")),
         count: 3),
     LoopingAudioSource(
         child: AudioSource.uri(Uri.parse("asset:///audio/4 - Thunder.mp3"),
-            tag: AudioMetadata("Thunder", "asset:///audio/4 - Thunder.mp3")),
+            tag: AudioMetadata("午后雷电", "asset:///audio/4 - Thunder.mp3")),
         count: 30),
     LoopingAudioSource(
         child: AudioSource.uri(
             Uri.parse("asset:///audio/7 - Walking in Snow.mp3"),
             tag: AudioMetadata(
-                "Walking in Snow", "asset:///audio/7 - Walking in Snow.mp3")),
+                "雪中漫步", "asset:///audio/7 - Walking in Snow.mp3")),
         count: 30),
     LoopingAudioSource(
         child: AudioSource.uri(Uri.parse("asset:///audio/8 - Horse Eating.mp3"),
             tag: AudioMetadata(
-                "Horse Eating", "asset:///audio/8 - Horse Eating.mp3")),
+                "马儿吃草", "asset:///audio/8 - Horse Eating.mp3")),
         count: 80),
     LoopingAudioSource(
         child: AudioSource.uri(Uri.parse("asset:///audio/9 - Evening .mp3"),
-            tag: AudioMetadata("Evening", "asset:///audio/9 - Evening .mp3")),
+            tag: AudioMetadata("夜半森林", "asset:///audio/9 - Evening .mp3")),
         count: 14),
     LoopingAudioSource(
         child: AudioSource.uri(
             Uri.parse("asset:///audio/10 - Farm Morning.mp3"),
             tag: AudioMetadata(
-                "Farm Morning", "asset:///audio/10 - Farm Morning.mp3")),
+                "清晨农场", "asset:///audio/10 - Farm Morning.mp3")),
         count: 9),
     LoopingAudioSource(
         child: AudioSource.uri(Uri.parse("asset:///audio/11 - Crickets.mp3"),
-            tag: AudioMetadata("Crickets", "asset:///audio/11 - Crickets.mp3")),
+            tag: AudioMetadata("蟋蟀鸣叫", "asset:///audio/11 - Crickets.mp3")),
         count: 14),
     LoopingAudioSource(
         child: AudioSource.uri(Uri.parse("asset:///audio/13 - Fire.mp3"),
-            tag: AudioMetadata("Fire", "asset:///audio/13 - Fire.mp3")),
+            tag: AudioMetadata("火焰燃烧", "asset:///audio/13 - Fire.mp3")),
         count: 5),
   ];
 

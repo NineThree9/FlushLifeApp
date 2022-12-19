@@ -17,9 +17,9 @@ class BreatheFeelingUtil {
   Future<List<BreatheFeeling>> getBreatheFeelings() async {
     if (_feelings.length == 0) {
       _feelings = [
-        BreatheFeeling(1, "Better"),
-        BreatheFeeling(2, "Same as before"),
-        BreatheFeeling(3, "Worse"),
+        BreatheFeeling(1, "好多了"),
+        BreatheFeeling(2, "还是一样"),
+        BreatheFeeling(3, "更坏了"),
       ];
     }
     return _feelings;

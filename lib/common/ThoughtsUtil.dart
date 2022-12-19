@@ -18,23 +18,23 @@ class ThoughtsUtil {
 
   Future<List<Thought>> getThoughts() async {
     if (_thoughts.length == 0) {
-      _thoughts.add(Thought(id: 1, thoughtAdj: "Balanced", thoughtNoun: "balanced"));
-      _thoughts.add(Thought(id: 2, thoughtAdj: "Calm", thoughtNoun: "calm"));
-      _thoughts.add(Thought(id: 3, thoughtAdj: "Relaxed", thoughtNoun: "relaxed"));
-      _thoughts.add(Thought(id: 4, thoughtAdj: "Encouraged", thoughtNoun: "encouraged"));
-      _thoughts.add(Thought(id: 5, thoughtAdj: "Happy", thoughtNoun: "happy"));
-      _thoughts.add(Thought(id: 6, thoughtAdj: "Satisfied", thoughtNoun: "satisfied"));
-      _thoughts.add(Thought(id: 7, thoughtAdj: "Grateful", thoughtNoun: "grateful"));
-      _thoughts.add(Thought(id: 8, thoughtAdj: "Excited", thoughtNoun: "excited"));
+      _thoughts.add(Thought(id: 1, thoughtAdj: "平和", thoughtNoun: "balanced"));
+      _thoughts.add(Thought(id: 2, thoughtAdj: "冷静", thoughtNoun: "calm"));
+      _thoughts.add(Thought(id: 3, thoughtAdj: "放松", thoughtNoun: "relaxed"));
+      _thoughts.add(Thought(id: 4, thoughtAdj: "鼓舞", thoughtNoun: "encouraged"));
+      _thoughts.add(Thought(id: 5, thoughtAdj: "开心", thoughtNoun: "happy"));
+      _thoughts.add(Thought(id: 6, thoughtAdj: "满足", thoughtNoun: "satisfied"));
+      _thoughts.add(Thought(id: 7, thoughtAdj: "感激", thoughtNoun: "grateful"));
+      _thoughts.add(Thought(id: 8, thoughtAdj: "兴奋", thoughtNoun: "excited"));
 
-      _thoughts.add(Thought(id: 9, thoughtAdj: "Anxiety", thoughtNoun:"anxiety"));
-      _thoughts.add(Thought(id: 10, thoughtAdj: "Lonely", thoughtNoun:"loneliness"));
-      _thoughts.add(Thought(id: 11, thoughtAdj: "Depressed", thoughtNoun:"depression"));
-      _thoughts.add(Thought(id: 12, thoughtAdj: "Exhausted", thoughtNoun:"exhaustion"));
-      _thoughts.add(Thought(id: 13, thoughtAdj: "Helpless", thoughtNoun:"helplessness"));
-      _thoughts.add(Thought(id: 14, thoughtAdj: "Frustrated", thoughtNoun:"frustration"));
-      _thoughts.add(Thought(id: 15, thoughtAdj: "Bored", thoughtNoun:"bore"));
-      _thoughts.add(Thought(id: 16, thoughtAdj: "Fear", thoughtNoun:"fear"));
+      _thoughts.add(Thought(id: 9, thoughtAdj: "焦虑", thoughtNoun:"anxiety"));
+      _thoughts.add(Thought(id: 10, thoughtAdj: "孤独", thoughtNoun:"loneliness"));
+      _thoughts.add(Thought(id: 11, thoughtAdj: "失望", thoughtNoun:"depression"));
+      _thoughts.add(Thought(id: 12, thoughtAdj: "疲惫", thoughtNoun:"exhaustion"));
+      _thoughts.add(Thought(id: 13, thoughtAdj: "无助", thoughtNoun:"helplessness"));
+      _thoughts.add(Thought(id: 14, thoughtAdj: "沮丧", thoughtNoun:"frustration"));
+      _thoughts.add(Thought(id: 15, thoughtAdj: "无聊", thoughtNoun:"bore"));
+      _thoughts.add(Thought(id: 16, thoughtAdj: "害怕", thoughtNoun:"fear"));
     }
     return _thoughts;
   }

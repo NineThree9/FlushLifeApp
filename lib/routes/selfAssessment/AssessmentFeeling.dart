@@ -134,7 +134,7 @@ class _AssessmentFeeling extends State<AssessmentFeeling> {
             margin: EdgeInsets.only(
                 top: 52.pt, left: 38.pt, right: 38.pt, bottom: 51),
             child: Text(
-              "How are you feeling right now?",
+              "你现在是什么感受?",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20.pt,

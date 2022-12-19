@@ -145,7 +145,7 @@ class _SandTableDetailPageState extends State<SandTableDetailPage>
                             right: 20.pt,
                             bottom: 22.pt),
                         child: Text(
-                          "Your ${flowModel?.thoughts[0].thoughtNoun} looks like this. \nLet’s cope with it.",
+                          "你的负面情绪看起来像这幅图\n一起来解决问题吧",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 20.pt,
@@ -225,7 +225,7 @@ class _SandTableDetailPageState extends State<SandTableDetailPage>
                           child: FadeTransition(
                             opacity: _btnAnimation,
                             child: Text(
-                              "Scratch off to erase",
+                              "把它刮掉吧",
                               style: TextStyle(
                                   fontSize: 20.pt,
                                   color: Color(0xFF999999),
@@ -250,7 +250,7 @@ class _SandTableDetailPageState extends State<SandTableDetailPage>
         alignment: Alignment.topCenter,
         margin: EdgeInsets.only(top: 272.pt),
         child: Text(
-          "The ${flowModel?.thoughts[0].thoughtNoun} has gone away.\nLet's relax for a moment.",
+          "负面情绪已经消失了\n一起放松一下吧",
           textAlign: TextAlign.center,
           strutStyle: StrutStyle(leading: 0.9.pt),
           style: TextStyle(

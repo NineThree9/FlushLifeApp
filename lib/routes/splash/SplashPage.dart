@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage> {
                       )),
                   Container(
                     margin: EdgeInsets.only(top: 70.pt,bottom: 150.pt),
-                    child: Text("Welcome to Flow",
+                    child: Text("欢迎来到FlushLife",
                         style: TextStyle(
                             color: Color(0xFFD1D2D7), fontSize: 20.pt)),
                   )

@@ -45,7 +45,7 @@ class _BreatheResultState extends State<BreatheResult> {
               Container(
                 margin: EdgeInsets.only(top: 84.pt),
                 child: Text(
-                  "Great",
+                  "好极了",
                   style: TextStyle(
                       color: Color(0xFF333333),
                       fontWeight: FontWeight.w500,
@@ -69,7 +69,7 @@ class _BreatheResultState extends State<BreatheResult> {
                       padding: EdgeInsets.symmetric(
                           vertical: 14.pt, horizontal: 50.pt),
                       child: Text(
-                        "Start Again",
+                        "再来一遍",
                         style: TextStyle(
                             color: Color(0x6F86FF).withOpacity(0.8),
                             fontSize: 20.pt,

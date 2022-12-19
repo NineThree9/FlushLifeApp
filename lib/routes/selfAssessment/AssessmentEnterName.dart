@@ -38,7 +38,7 @@ class _AssessmentEnterName extends State<AssessmentEnterName> {
             Container(
               margin: EdgeInsets.only(top: 52.pt, bottom: 59.pt),
               child: Text(
-                "What would you like to be called?",
+                "你希望我们称呼你什么?",
                 style: TextStyle(
                     fontSize: 20.pt,
                     letterSpacing: 0.4.pt,
@@ -61,7 +61,7 @@ class _AssessmentEnterName extends State<AssessmentEnterName> {
                 maxLines: 1,
                 maxLength: 12,
                 decoration: InputDecoration(
-                    hintText: "Your Nickname",
+                    hintText: "你的称呼：",
                     counterText: "",
                     hintStyle: TextStyle(color: Color(0xFFD1D2D7))),
                 style: TextStyle(
