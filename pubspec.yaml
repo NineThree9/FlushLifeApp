@@ -193,7 +193,8 @@ flutter:
       - imgs/meditation/10.png
       - imgs/meditation/11.png
 
-
+      - assets/icons/
+      - assets/images/
 
       - audio/
 

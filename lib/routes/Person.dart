@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:health/routes/Information/page/welcome_page.dart';
 
+import 'Information/login.dart';
+import 'Total.dart';
 import 'introduction_animation/introduction_animation_screen.dart';
 // import 'menu_item.dart';
 // import 'contact_item.dart';
@@ -13,7 +16,7 @@ class Person extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home:MyPersonPage()
+        home:MyPersonPage(context)
     );
   }
 }
@@ -21,7 +24,9 @@ class Person extends StatelessWidget {
 //窗口入口
 class MyPersonPage extends StatefulWidget {
 
-  MyPersonPage({Key key}) : super(key: key);
+  var parentContext;
+
+  MyPersonPage(this.parentContext,{Key key}) : super(key: key);
 
   @override
   _MyPersonPage createState() {
@@ -176,7 +181,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                                 bottom: 15.0,
                               ),
                               child: new Text(
-                                '登录FlushLife',
+                                'FlushLife',
                                 style: new TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -188,7 +193,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                                 left: 30.0,
                               ),
                               child: new Text(
-                                '清洗内省的污秽，重新出发',
+                                '清洗内心的污秽，重新出发',
                                 style: new TextStyle(
                                     color: Colors.white, fontSize: 15.0),
                               ),
@@ -253,7 +258,48 @@ class _MyPersonPage extends State<MyPersonPage> {
 
                   ),
                 ),
+                new Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.fitWidth,
+                        image: AssetImage("imgs/bg/bg_guide.jpg"),
+                      ),
+                    ),
+                    // color: Colors.white,
+                    //
+                    margin: const EdgeInsets.only(top: 10.0),
+                    child: Column(
 
+                    )
+                ),
+                new Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.fitWidth,
+                        image: AssetImage("imgs/bg/bg_guide.jpg"),
+                      ),
+                    ),
+                    // color: Colors.white,
+                    //
+                    margin: const EdgeInsets.only(top: 10.0),
+                    child: Column(
+
+                    )
+                ),
+                new Container(
+                  decoration: BoxDecoration(
+                  image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: AssetImage("imgs/bg/bg_guide.jpg"),
+                  ),
+                  ),
+                  // color: Colors.white,
+                  //
+                  margin: const EdgeInsets.only(top: 10.0),
+                  child: Column(
+
+                  )
+                ),
                 new Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -267,24 +313,70 @@ class _MyPersonPage extends State<MyPersonPage> {
                   child: Column(
                     children: <Widget>[
                       new MenuItem(
-                        icon: Icons.face,
-                        title: '登录',
-                        onPressed: () {
-                          print("test");
-                          Navigator.push(context, MaterialPageRoute(builder: (
-                              _) {
-                            // 目标页面，即一个 Widget
-                            return IntroductionAnimationScreen();
-                          }));
-                        }
+                        icon: Icons.print,
+                        title: '账号',
+                        onPressed: (){
+                          Navigator.push(widget.parentContext,
+                              MaterialPageRoute(builder: (context) => WelcomePage()));
+                        },
                       ),
                       new MenuItem(
+                          icon: Icons.face,
+                          title: '找回密码',
+                          onPressed: () {
+                            // Navigator.of(context).push(PageRouteBuilder(
+                            //     pageBuilder: (BuildContext context, Animation animation,
+                            //         Animation secondaryAnimation) {
+                            //       return LoginPage(this.context);
+                            //     },
+                            //     settings: RouteSettings()));
+                            Navigator.push(widget.parentContext,
+                                MaterialPageRoute(builder: (context) => LoginPage(widget.parentContext)));
+                          }
+                      ),
+                      ///更换头像
+                      new MenuItem(
                         icon: Icons.print,
-                        title: '注册账户',
+                        title: '更换头像',
                         onPressed: (){
 
                         },
                       ),
+                      ///收藏的文章
+                      new MenuItem(
+                        icon: Icons.print,
+                        title: '收藏的文章',
+                        onPressed: (){
+
+                        },
+                      ),
+                      ///反馈意见
+                      new MenuItem(
+                          icon: Icons.document_scanner,
+                          title: '反馈',
+                          onPressed: () {
+                            // Navigator.of(context).push(PageRouteBuilder(
+                            //     pageBuilder: (BuildContext context, Animation animation,
+                            //         Animation secondaryAnimation) {
+                            //       return LoginPage(this.context);
+                            //     },
+                            //     settings: RouteSettings()));
+                            Navigator.push(widget.parentContext,
+                                MaterialPageRoute(builder: (context) => LoginPage(widget.parentContext)));
+                          }
+                      ),
+                      ///退出账号
+                      new MenuItem(
+                        icon: Icons.print,
+                        title: '退出账号',
+                        onPressed: (){
+                          Navigator.pushAndRemoveUntil(widget.parentContext,
+                            MaterialPageRoute(builder: (context) =>  MyApp(null)),
+                                (route) => false,
+                          );
+                          },
+                      ),
+
                     ],
                   ),
                 ),

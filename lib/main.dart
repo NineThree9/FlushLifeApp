@@ -14,5 +14,5 @@ Future<void> main() async {
   ReportUtil.getInstance().trackEvent(eventName: EventConstants.app_enter);
   await PushManager.getInstance().init();
   // Global.init().then((value) => runApp(App())).then((value) => PushManager.getInstance().requestIosPermissions());
-  Global.init().then((value) => runApp(MyApp())).then((value) => PushManager.getInstance().requestIosPermissions());
+  Global.init().then((value) => runApp(MyApp(null))).then((value) => PushManager.getInstance().requestIosPermissions());
 }

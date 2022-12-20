@@ -62,7 +62,8 @@ class _SplashRouteState extends State<SplashRoute> {
   }
 
   void startTimer() async {
-    _timer = new Timer(Duration(milliseconds: 3000), () {
+    //调试过程中将开启时间 修改为3
+    _timer = new Timer(Duration(milliseconds: 0), () {
       if (isFirstOpen) {
         navigateToGuide();
       } else {

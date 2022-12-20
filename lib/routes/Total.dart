@@ -10,6 +10,10 @@ import 'package:health/routes/SplashRoute.dart';
 //
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  var userid;
+  MyApp(id){
+    this.userid=id;
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
