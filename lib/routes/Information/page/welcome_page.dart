@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:health/routes/Information/page/enroll_page.dart';
 import 'package:health/routes/information/page/login_page.dart';
 import 'package:health/routes/information/theme/app_colors.dart';
 import 'package:health/routes/information/welcome_widget.dart';
 
 // 欢迎页面
 class WelcomePage extends StatefulWidget {
-  WelcomePage({Key key}) : super(key: key);
+  var parentcontext;
+  WelcomePage(this.parentcontext,{Key key}) : super(key: key);
 
   @override
   _WelcomePageState createState() => _WelcomePageState();
@@ -27,7 +29,7 @@ class _WelcomePageState extends State<WelcomePage> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return LoginPage();
+                  return EnrollPage();
                 },
               ));
             },
@@ -38,7 +40,7 @@ class _WelcomePageState extends State<WelcomePage> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return LoginPage();
+                  return LoginPage(widget.parentcontext);
                 },
               ));
             },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health/routes/Information/page/welcome_page.dart';
 
-import 'Information/login.dart';
+import 'MyFunction/FindBackPassword.dart';
 import 'Total.dart';
 import 'introduction_animation/introduction_animation_screen.dart';
 // import 'menu_item.dart';
@@ -317,9 +317,10 @@ class _MyPersonPage extends State<MyPersonPage> {
                         title: '账号',
                         onPressed: (){
                           Navigator.push(widget.parentContext,
-                              MaterialPageRoute(builder: (context) => WelcomePage()));
+                              MaterialPageRoute(builder: (context) => WelcomePage(widget.parentContext)));
                         },
                       ),
+                      //todo
                       new MenuItem(
                           icon: Icons.face,
                           title: '找回密码',
@@ -335,6 +336,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                           }
                       ),
                       ///更换头像
+                      //todo
                       new MenuItem(
                         icon: Icons.print,
                         title: '更换头像',
@@ -343,6 +345,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                         },
                       ),
                       ///收藏的文章
+                      //todo
                       new MenuItem(
                         icon: Icons.print,
                         title: '收藏的文章',
@@ -351,6 +354,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                         },
                       ),
                       ///反馈意见
+                      //todo
                       new MenuItem(
                           icon: Icons.document_scanner,
                           title: '反馈',

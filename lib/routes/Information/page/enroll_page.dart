@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:health/routes/information/theme/app_style.dart';
-import 'package:health/routes/information/login_widget.dart';
 
-/// 登录页面
-class LoginPage extends StatefulWidget {
-  LoginPage(this.parentcontext);
-  var parentcontext;
 
+import '../enroll_widget.dart';
+
+/// 注册页面
+class EnrollPage extends StatefulWidget {
+  EnrollPage({Key key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _EnrollPageState createState() => _EnrollPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _EnrollPageState extends State<EnrollPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +26,8 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 200),
               // Spacer(),
               ClipPath(
-                clipper: LoginClipper(),
-                child: LoginBodyWidget(),
+                clipper: EnrollClipper(),
+                child: EnrollBodyWidget(),
               ),
               // SizedBox(height: MediaQuery.of(context).viewInsets.bottom)
             ],
@@ -44,8 +44,8 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 /// 登录页面内容体
-class LoginBodyWidget extends StatelessWidget {
-  const LoginBodyWidget({
+class EnrollBodyWidget extends StatelessWidget {
+  const EnrollBodyWidget({
     Key key,
   }) : super(key: key);
 
@@ -59,9 +59,9 @@ class LoginBodyWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 86),
+          SizedBox(height: 26),
           Text(
-            'Login',
+            'Enroll',
             style: kTitleTextStyle,
           ),
           SizedBox(height: 20),
@@ -70,8 +70,18 @@ class LoginBodyWidget extends StatelessWidget {
             style: kBodyTextStyle,
           ),
           SizedBox(height: 4),
-          LoginInput(
+          EnrollInput(
             hintText: 'Email',
+            prefixIcon: 'assets/icons/icon_email.png',
+          ),
+          SizedBox(height: 16),
+          Text(
+            'Your name',
+            style: kBodyTextStyle,
+          ),
+          SizedBox(height: 4),
+          EnrollInput(
+            hintText: 'User Name',
             prefixIcon: 'assets/icons/icon_email.png',
           ),
           SizedBox(height: 16),
@@ -80,13 +90,13 @@ class LoginBodyWidget extends StatelessWidget {
             style: kBodyTextStyle,
           ),
           SizedBox(height: 4),
-          LoginInput(
+          EnrollInput(
             hintText: 'Password',
             prefixIcon: 'assets/icons/icon_pwd.png',
             obscureText: true,
           ),
           SizedBox(height: 32),
-          LoginBtnIconWidget(),
+          EnrollBtnIconWidget(),
           SizedBox(height: 32),
         ],
       ),
