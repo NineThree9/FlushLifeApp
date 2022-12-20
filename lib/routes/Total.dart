@@ -34,9 +34,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      
       body: _pageNo[selectedpage],
       bottomNavigationBar: ConvexAppBar(
+        backgroundColor: new Color.fromARGB(200, 238, 128, 85),
         items: [
           TabItem(icon: Icons.person, title: '首页'),
           TabItem(icon: Icons.favorite, title: '探索'),

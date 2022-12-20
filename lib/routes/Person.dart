@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'introduction_animation/introduction_animation_screen.dart';
 // import 'menu_item.dart';
 // import 'contact_item.dart';
 
@@ -11,17 +13,24 @@ class Person extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home:MyHomePage()
+        home:MyPersonPage()
     );
   }
 }
 
+//窗口入口
+class MyPersonPage extends StatefulWidget {
 
-/***
- *  创建人：xuqing
- *  创建时间：2020年2月5日18:30:50
- *  类说明：横向布局的  封装
- */
+  MyPersonPage({Key key}) : super(key: key);
+
+  @override
+  _MyPersonPage createState() {
+    return _MyPersonPage();
+  }
+}
+
+
+//个人基本属性
 class ContactItem extends StatelessWidget {
   ContactItem({Key key, this.count, this.title, this.onPressed})
       : super(key: key);
@@ -49,11 +58,7 @@ class ContactItem extends StatelessWidget {
 }
 
 
-/**
- * 创建人：xuqing
- * 创建时间 ：2020年2月4日21:39:42
- *
- */
+//功能栏
 class MenuItem extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -64,7 +69,7 @@ class MenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return  new GestureDetector(
-      onTap: onPressed,
+      onTap:onPressed,
       child:  new Column(
         children: <Widget>[
           new Padding(
@@ -111,19 +116,12 @@ class MenuItem extends StatelessWidget {
 }
 
 
-class MyHomePage extends StatefulWidget {
 
-  MyHomePage({Key key}) : super(key: key);
-
-  @override
-  _MyHomePageState createState() {
-    return _MyHomePageState();
-  }
-}
-class _MyHomePageState extends State<MyHomePage> {
+//个人界面主题程序
+class _MyPersonPage extends State<MyPersonPage> {
   final double _appBarHeight = 180.0;
   final String _userHead =
-      'https://img.bosszhipin.com/beijin/mcs/useravatar/20171211/4d147d8bb3e2a3478e20b50ad614f4d02062e3aec7ce2519b427d24a3f300d68_s.jpg';
+      'https://pic.616pic.com/ys_img/00/03/79/6pxmNeU4FS.jpg';
   @override
   void initState() {
     super.initState();
@@ -139,11 +137,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // TODO: implement build
 
     return new Scaffold(
-      backgroundColor: new Color.fromARGB(255, 242, 242, 245),
+      // backgroundColor: new Color.fromARGB(175,240, 173,160),
       body: new CustomScrollView(
         slivers: <Widget>[
           new SliverAppBar(
             expandedHeight: _appBarHeight,
+            backgroundColor: new Color.fromARGB(255,240, 173,160),
             flexibleSpace: new FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               background: new Stack(
@@ -177,11 +176,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 bottom: 15.0,
                               ),
                               child: new Text(
-                                'Rei Ki',
+                                '登录FlushLife',
                                 style: new TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 35.0),
+                                    fontSize: 30.0),
                               ),
                             ),
                             new Padding(
@@ -189,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 left: 30.0,
                               ),
                               child: new Text(
-                                '在职-不考虑机会',
+                                '清洗内省的污秽，重新出发',
                                 style: new TextStyle(
                                     color: Colors.white, fontSize: 15.0),
                               ),
@@ -217,10 +216,17 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           new SliverList(
+
             delegate: new SliverChildListDelegate(
               <Widget>[
                 new Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.none,
+                      image: AssetImage("imgs/bg/bg_guide.jpg"),
+                    ),
+                  ),
+                  // color: Colors.white,
                   child: new Padding(
                     padding: const EdgeInsets.only(
                       top: 10.0,
@@ -230,68 +236,54 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         new ContactItem(
-                          count: '696',
-                          title: '沟通过',
+                          count: '0天',
+                          title: '使用天数',
                         ),
                         new ContactItem(
-                          count: '0',
-                          title: '面试',
+                          count: '0次',
+                          title: '感受记录',
                         ),
                         new ContactItem(
-                          count: '71',
-                          title: '已投递',
+                          count: '0次',
+                          title: '呼吸训练',
                         ),
-                        new ContactItem(
-                          count: '53',
-                          title: '感兴趣',
-                        ),
+
                       ],
                     ),
+
                   ),
                 ),
+
                 new Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.fitWidth,
+                      image: AssetImage("imgs/bg/bg_guide.jpg"),
+                    ),
+                  ),
+                  // color: Colors.white,
+                  //
                   margin: const EdgeInsets.only(top: 10.0),
                   child: Column(
                     children: <Widget>[
                       new MenuItem(
                         icon: Icons.face,
-                        title: '体验新版本',
-                        onPressed: (){
-                          print("体验新版本  ----   >");
-                        },
+                        title: '登录',
+                        onPressed: () {
+                          print("test");
+                          Navigator.push(context, MaterialPageRoute(builder: (
+                              _) {
+                            // 目标页面，即一个 Widget
+                            return IntroductionAnimationScreen();
+                          }));
+                        }
                       ),
                       new MenuItem(
                         icon: Icons.print,
-                        title: '我的微简历',
-                      ),
-                      new MenuItem(
-                        icon: Icons.archive,
-                        title: '附件简历',
-                      ),
-                      new MenuItem(
-                        icon: Icons.home,
-                        title: '管理求职意向',
-                      ),
-                      new MenuItem(
-                        icon: Icons.title,
-                        title: '提升简历排名',
-                      ),
-                      new MenuItem(
-                        icon: Icons.chat,
-                        title: '牛人问答',
-                      ),
-                      new MenuItem(
-                        icon: Icons.assessment,
-                        title: '关注公司',
-                      ),
-                      new MenuItem(
-                        icon: Icons.add_shopping_cart,
-                        title: '钱包',
-                      ),
-                      new MenuItem(
-                        icon: Icons.security,
-                        title: '隐私设置',
+                        title: '注册账户',
+                        onPressed: (){
+
+                        },
                       ),
                     ],
                   ),
