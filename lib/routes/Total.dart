@@ -2,7 +2,8 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:health/routes/App.dart';
 import 'package:health/routes/Person.dart';
-
+import 'package:health/routes/HomeRoute.dart';
+import 'package:health/routes/SplashRoute.dart';
 //MyApp 是整个app
 //App是首页
 //Person是 个人信息
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: MyHomePage(),
+      home: SplashRoute(),
     );
   }
 }
@@ -33,15 +34,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Convex Bottom Bar'),
-      ),
+
       body: _pageNo[selectedpage],
       bottomNavigationBar: ConvexAppBar(
         items: [
           TabItem(icon: Icons.person, title: '首页'),
-          TabItem(icon: Icons.favorite, title: '社区'),
+          TabItem(icon: Icons.favorite, title: '探索'),
           TabItem(icon: Icons.brush, title: '我的')
         ],
         initialActiveIndex: selectedpage,

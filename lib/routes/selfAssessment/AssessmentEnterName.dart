@@ -5,6 +5,7 @@ import 'package:health/report/ReportUtil.dart';
 
 import 'SelfAssessmentRoute.dart';
 import 'package:health/extension/ScreenExtension.dart';
+import 'package:health/routes/Total.dart';
 
 class AssessmentEnterName extends StatefulWidget {
   static final nickName = "nick_name";
@@ -86,7 +87,7 @@ class _AssessmentEnterName extends State<AssessmentEnterName> {
                   child: Wrap(
                     children: [
                       Text(
-                        "Sweet",
+                        "确定",
                         style: TextStyle(
                             fontSize: 20.pt,
                             color: Colors.white,
@@ -123,7 +124,15 @@ class _AssessmentEnterName extends State<AssessmentEnterName> {
           .trackEvent(eventName: EventConstants.nickname_next, parameters: map);
       Global.getPref().setStorage(
           AssessmentEnterName.nickName, nickNameController.text.trim());
-      widget.onFinishEnterName();
+      // widget.onFinishEnterName();
+
+      //跳转并关闭当前页面
+      Navigator.pushAndRemoveUntil(
+        context,
+        new MaterialPageRoute(builder: (context) => new MyHomePage()),
+            (route) => route == null,
+      );
+
     }
   }
 

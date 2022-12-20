@@ -519,7 +519,10 @@ class _HomeRouteState extends State<HomeRoute> {
             ),
             Container(
               alignment: Alignment.centerRight,
-              child: Image.asset("imgs/home/ic_breath.png"),
+              child: Image.asset("imgs/home/ic_feedback.png",
+                width: 100,
+                height: 100,
+                ),
             ),
           ],
         ),

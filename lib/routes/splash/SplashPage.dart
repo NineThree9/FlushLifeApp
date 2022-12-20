@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:health/extension/ScreenExtension.dart';
+import 'package:health/routes/Total.dart';
 
 class SplashPage extends StatefulWidget {
   @override

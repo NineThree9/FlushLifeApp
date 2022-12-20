@@ -115,7 +115,7 @@ class _GuideRouteState extends State<GuideRoute> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.pt, horizontal: 26.pt),
               child: Text(
-                "现在进入FlushAway的世界吧",
+                "现在进入FlushLife的世界吧",
                 textAlign: TextAlign.center,
                 strutStyle: StrutStyle(leading: 1.4),
                 style: TextStyle(

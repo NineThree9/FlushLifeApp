@@ -58,7 +58,7 @@ class App extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Color(0xFF6F86FF),
         ),
-        home: SplashRoute(),
+        home: HomeRoute(),
         routes: <String, WidgetBuilder>{
           SplashRoute.splashName: (context) => SplashRoute(),
           GuideRoute.guideName: (context) => GuideRoute(),

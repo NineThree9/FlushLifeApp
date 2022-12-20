@@ -32,16 +32,19 @@ class _MeditationRouteState extends State<MeditationRoute> {
   var lastBufferedPosition = Duration();
 
   List<String> bgList = [
-    "imgs/meditation/1.jpg",
-    "imgs/meditation/2.jpg",
-    "imgs/meditation/3.jpg",
-    "imgs/meditation/4.jpg",
-    "imgs/meditation/5.jpg",
-    "imgs/meditation/6.jpg",
+    "imgs/meditation/1.png",
+    "imgs/meditation/2.png",
+    "imgs/meditation/3.png",
+    "imgs/meditation/4.png",
+    "imgs/meditation/5.png",
+    "imgs/meditation/6.png",
     "imgs/meditation/7.jpg",
-    "imgs/meditation/8.jpg",
-    "imgs/meditation/9.jpg",
-    "imgs/meditation/10.jpg",
+    "imgs/meditation/8.png",
+    "imgs/meditation/9.png",
+    "imgs/meditation/10.png",
+    "imgs/meditation/11.png",
+
+
 
   ];
 
@@ -122,7 +125,7 @@ class _MeditationRouteState extends State<MeditationRoute> {
     super.initState();
     _player = AudioPlayer();
     _player.setLoopMode(LoopMode.off);
-    bg_index = Random(DateTime.now().millisecond).nextInt(bgList.length);
+    bg_index = 0;
     _initPlayer();
     autoInvisible = Timer(Duration(seconds: 10), () {
       if (_player.playing) {
@@ -308,7 +311,7 @@ class _MeditationRouteState extends State<MeditationRoute> {
       lastPosition = Duration();
       lastBufferedPosition = Duration();
       setState(() {
-        bg_index = Random(DateTime.now().millisecond).nextInt(bgList.length);
+        bg_index++;
       });
       await _player
           .setAudioSource(_playlist[++currentPlaylistIndex % _playlist.length]);
@@ -332,7 +335,7 @@ class _MeditationRouteState extends State<MeditationRoute> {
       lastPosition = Duration();
       lastBufferedPosition = Duration();
       setState(() {
-        bg_index = Random(DateTime.now().millisecond).nextInt(bgList.length);
+        bg_index--;
       });
       await _player
           .setAudioSource(_playlist[--currentPlaylistIndex % _playlist.length]);

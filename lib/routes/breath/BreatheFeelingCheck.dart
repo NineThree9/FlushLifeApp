@@ -10,6 +10,7 @@ import '../HomeRoute.dart';
 import 'BreathSource.dart';
 import 'BreatheFeeling.dart';
 import 'package:health/extension/ScreenExtension.dart';
+import 'package:health/routes/Total.dart';
 
 class BreatheFeelingCheck extends StatefulWidget {
   static const String breatheFeelingCheckName = "/breathFellingCheck";
@@ -71,7 +72,7 @@ class _BreatheFeelingCheckState extends State<BreatheFeelingCheck> {
                 margin: EdgeInsets.only(top: 86.pt, bottom: 95.pt),
                 alignment: Alignment.center,
                 child: Text(
-                  "How are you feeling now?",
+                  "现在感觉如何?",
                   style: TextStyle(
                       fontSize: 24.pt,
                       fontWeight: FontWeight.w500,
