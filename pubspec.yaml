@@ -168,7 +168,7 @@ flutter:
       - imgs/home/item_breath.png
       - imgs/home/card_icon_face.png
       - imgs/home/ic_feedback.png
-
+      - imgs/sound/
       - imgs/sound/backgroud_sounds_1.jpg
       - imgs/sound/backgroud_sounds_2.jpg
       - imgs/sound/backgroud_sounds_3.jpg
@@ -180,7 +180,9 @@ flutter:
       - imgs/sound/bt_sounds_next.png
       - imgs/sound/bt_sounds_previous.png
 
+
       - imgs/breath/bg_bottom.png
+      - imgs/breath/
 
       - config/dailyMotionSentence.json
       - imgs/meditation/1.png

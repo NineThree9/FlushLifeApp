@@ -320,24 +320,41 @@ class _MyPersonPage extends State<MyPersonPage> {
                       top: 10.0,
                       bottom: 10.0,
                     ),
-                    child: new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        new ContactItem(
-                          count: spendtimes+'天',
-                          title: '使用天数',
+                    child:
+                      new Column(
+                        children:
+                      [
+                        new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                  new ContactItem(
+                                  count: spendtimes+'天',
+                                  title: '使用天数',
+                                  ),
+                                  new ContactItem(
+                                  count: feeltimes+'次',
+                                  title: '感受记录',
+                                  ),
+                                  new ContactItem(
+                                  count: breathetimes+'次',
+                                  title: '呼吸训练',
+                                  ),
+                              ]
                         ),
-                        new ContactItem(
-                          count: feeltimes+'次',
-                          title: '感受记录',
-                        ),
-                        new ContactItem(
-                          count: breathetimes+'次',
-                          title: '呼吸训练',
-                        ),
-
-                      ],
-                    ),
+                      //   new Row(
+                      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      //       children: [
+                      //       new ContactItem(
+                      //       count: spendtimes+'天',
+                      //       title: '聆听白噪音',
+                      //       ),
+                      //       new ContactItem(
+                      //       count: feeltimes+'次',
+                      //       title: '学习冥想',
+                      //       ),]
+                      //   )
+                      ]
+                      ),
 
                   ),
                 ),

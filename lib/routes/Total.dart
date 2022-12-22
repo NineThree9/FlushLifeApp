@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    this._pageNo = [App(), App(), Person(this.userid)];
+    this._pageNo = [App(this.userid), App(this.userid), Person(this.userid)];
     return Scaffold(
       
       body: _pageNo[selectedpage],

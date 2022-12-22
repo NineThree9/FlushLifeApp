@@ -98,7 +98,7 @@ class _BreatheFeelingCheckState extends State<BreatheFeelingCheck> {
     if (fromHome == BreathSource.selfAssessment) {
       Navigator.of(context).pop();
       Navigator.of(context).push(SlideVerticalRoute(
-          child: HomeRoute(), settings: RouteSettings(arguments: map)));
+          child: HomeRoute(null), settings: RouteSettings(arguments: map)));
     }
   }
 

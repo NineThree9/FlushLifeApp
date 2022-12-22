@@ -19,6 +19,10 @@ import 'SplashRoute.dart';
 import 'sandTable/SandTableRoute.dart';
 
 class App extends StatelessWidget {
+  final userid;
+
+  App( this.userid, {Key key,});
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -58,11 +62,11 @@ class App extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Color(0xFF6F86FF),
         ),
-        home: HomeRoute(),
+        home: HomeRoute(this.userid),
         routes: <String, WidgetBuilder>{
           SplashRoute.splashName: (context) => SplashRoute(),
           GuideRoute.guideName: (context) => GuideRoute(),
-          HomeRoute.homeName: (context) => HomeRoute(),
+          HomeRoute.homeName: (context) => HomeRoute(this.userid),
           SelfAssessmentRoute.selfAssessmentName: (context) =>
               SelfAssessmentRoute(),
           SandTableRoute.sandTableName: (context) => SandTableRoute(),
