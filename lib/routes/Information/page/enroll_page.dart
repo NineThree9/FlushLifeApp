@@ -45,7 +45,10 @@ class _EnrollPageState extends State<EnrollPage> {
 
 /// 登录页面内容体
 class EnrollBodyWidget extends StatelessWidget {
-  const EnrollBodyWidget({
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
+  EnrollBodyWidget({
     Key key,
   }) : super(key: key);
 
@@ -73,6 +76,7 @@ class EnrollBodyWidget extends StatelessWidget {
           EnrollInput(
             hintText: 'Email',
             prefixIcon: 'assets/icons/icon_email.png',
+            mycontroller: emailController,
           ),
           SizedBox(height: 16),
           Text(
@@ -83,6 +87,7 @@ class EnrollBodyWidget extends StatelessWidget {
           EnrollInput(
             hintText: 'User Name',
             prefixIcon: 'assets/icons/icon_email.png',
+            mycontroller: nameController,
           ),
           SizedBox(height: 16),
           Text(
@@ -93,10 +98,12 @@ class EnrollBodyWidget extends StatelessWidget {
           EnrollInput(
             hintText: 'Password',
             prefixIcon: 'assets/icons/icon_pwd.png',
-            obscureText: true,
+            mycontroller: passwordController,
           ),
           SizedBox(height: 32),
-          EnrollBtnIconWidget(),
+          EnrollBtnIconWidget(emailController: this.emailController,
+          nameController: this.nameController, passwordController: this.passwordController,
+          ),
           SizedBox(height: 32),
         ],
       ),

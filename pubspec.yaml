@@ -41,6 +41,7 @@ dependencies:
 
   just_audio: ^0.7.0
 
+
   audio_session: ^0.1.0
 
   intl: ^0.17.0
@@ -51,6 +52,7 @@ dependencies:
   path:
   moor_generator: 4.1.0
   provider: ^5.0.0
+  http:
 
   async: ^2.8.2
   smooth_page_indicator: ^0.3.0-nullsafety.0

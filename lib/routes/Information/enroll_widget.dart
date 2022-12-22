@@ -1,10 +1,11 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:health/routes/information/theme/app_size.dart';
 import 'package:health/routes/information/theme/app_style.dart';
 import 'package:health/routes/information/welcome_widget.dart';
-
+import 'package:http/http.dart' as http;
 ///登录页面剪裁曲线
 class EnrollClipper extends CustomClipper<Path> {
   // 第一个点
@@ -49,11 +50,17 @@ class EnrollClipper extends CustomClipper<Path> {
   }
 }
 
-/// 登录图标按钮
+/// 注册图标按钮
 class EnrollBtnIconWidget extends StatelessWidget {
-  const EnrollBtnIconWidget({
+  EnrollBtnIconWidget({
     Key key,
+    this.emailController, this.nameController, this.passwordController,
+
   }) : super(key: key);
+  final emailController;
+  final nameController;
+  final passwordController;
+
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +85,37 @@ class EnrollBtnIconWidget extends StatelessWidget {
             ],
           ),
           onTap: () {
-            Navigator.pop(context);
+            final url = Uri.parse('http://192.168.204.219:9091/enroll');
+            http.post(url,
+                body: {'useremail': this.emailController.text, 'username':this.nameController.text ,'userpassword':this.passwordController.text})
+                .then((http.Response response) {
+                  final Map<String, dynamic> responseData = json.decode(response.body);
+
+                  //处理响应数据
+                  if (responseData["code"]==200){
+                    showConfirmDialog(context, '注册成功，请保存好账户数据。返回登录界面登录', () {
+                      Navigator.pop(context);
+                      // 执行确定操作后的逻辑
+                    });
+                  }
+                  else if (responseData["code"]==0){
+                    showConfirmDialog(context, '信息不完整。请重新填写', () {
+                      // Navigator.pop(context);
+                      // 执行确定操作后的逻辑
+                    });
+                  }
+                  else if (responseData["code"]==100){
+                    showConfirmDialog(context, '邮箱已被注册，请更换邮箱', () {
+                      // Navigator.pop(context);
+                      // 执行确定操作后的逻辑
+                    });
+                  }
+
+            }).catchError((error) {
+              print('$error错误');
+            });
+
+            // Navigator.pop(context);
           },
         )
       ],
@@ -88,20 +125,23 @@ class EnrollBtnIconWidget extends StatelessWidget {
 
 ///登录输入框
 class EnrollInput extends StatelessWidget {
-  const EnrollInput({
+  EnrollInput({
     Key key,
     this.hintText,
     this.prefixIcon,
     this.obscureText = false,
+    this.mycontroller,
   }) : super(key: key);
 
   final String hintText;
   final String prefixIcon;
   final bool obscureText;
+  final mycontroller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: mycontroller,
       decoration: InputDecoration(
         hintText: hintText,
         border: kInputBorder,
@@ -155,4 +195,31 @@ class BackIcon extends StatelessWidget {
       ),
     );
   }
+}
+
+//注册对话框
+void showConfirmDialog(BuildContext context,String content, Function confirmCallback) {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return new AlertDialog(
+          title: new Text("提示"),
+          content: new Text(content),
+          actions: <Widget>[
+            new FlatButton(
+              onPressed: () {
+                confirmCallback();
+                Navigator.of(context).pop();
+              },
+              child: new Text("确认"),
+            ),
+            new FlatButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: new Text("取消"),
+            ),
+          ],
+        );
+      });
 }

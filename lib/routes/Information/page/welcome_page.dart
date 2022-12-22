@@ -46,13 +46,21 @@ class _WelcomePageState extends State<WelcomePage> {
             },
           ),
           SizedBox(height: 16),
-          Text(
-            '忘记密码?',
-            style: TextStyle(
-              fontSize: 18,
-              color: kTextColor,
-            ),
-          ),
+          RightView(title: "忘记密码?",
+            rightClick: () {
+              showConfirmDialog(context, '请前往个人中心找回密码', () {
+                // print('点击了确定删除......');
+                // 执行确定操作后的逻辑
+              });
+            },),
+          // Text(
+          //   '忘记密码?',
+          //   style: TextStyle(
+          //     fontSize: 18,
+          //     color: kTextColor,
+          //   ),
+          //
+          // ),
           SizedBox(height: 54),
           Row(
             children: [
@@ -72,4 +80,56 @@ class _WelcomePageState extends State<WelcomePage> {
       ),
     );
   }
+}
+class RightView extends StatelessWidget {
+  String title;
+  VoidCallback rightClick;
+
+  RightView({this.title, this.rightClick});
+
+  @override
+  Widget build(BuildContext context) {
+    var containView;
+    if (title != Null) {
+      containView = new Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(10.0),
+        child: GestureDetector(
+          child: Text(
+            this.title,
+            style: TextStyle(color: kTextColor, fontSize: 18.0),
+          ),
+          onTap: this.rightClick,
+        ),
+      );
+    } else {
+      containView = Text("");
+    }
+    return containView;
+  }
+}
+void showConfirmDialog(BuildContext context,String content, Function confirmCallback) {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return new AlertDialog(
+          title: new Text("提示"),
+          content: new Text(content),
+          actions: <Widget>[
+            new FlatButton(
+              onPressed: () {
+                confirmCallback();
+                Navigator.of(context).pop();
+              },
+              child: new Text("确认"),
+            ),
+            new FlatButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: new Text("取消"),
+            ),
+          ],
+        );
+      });
 }
