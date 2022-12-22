@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   var userid;
   MyApp(id){
     this.userid=id;
+    print(id);
   }
   @override
   Widget build(BuildContext context) {
@@ -21,31 +22,39 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: SplashRoute(),
+      home: SplashRoute(userid:this.userid),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  final userid;
+
+  const MyHomePage({Key key, this.userid}) : super(key: key);
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(this.userid);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   int selectedpage = 0;
-  final _pageNo = [App(), App(), Person()];
+  final userid;
+  var _pageNo ;
+
+  _MyHomePageState(this.userid);
 
   @override
   Widget build(BuildContext context) {
+    this._pageNo = [App(), App(), Person(this.userid)];
     return Scaffold(
       
       body: _pageNo[selectedpage],
       bottomNavigationBar: ConvexAppBar(
         backgroundColor: new Color.fromARGB(200, 238, 128, 85),
         items: [
-          TabItem(icon: Icons.person, title: '首页'),
+          TabItem(icon: Icons.brush_outlined, title: '首页'),
           TabItem(icon: Icons.favorite, title: '探索'),
-          TabItem(icon: Icons.brush, title: '我的')
+          TabItem(icon: Icons.person, title: '我的')
         ],
         initialActiveIndex: selectedpage,
         onTap: (int index) {

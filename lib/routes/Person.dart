@@ -1,22 +1,29 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:health/routes/Information/page/welcome_page.dart';
 
 import 'MyFunction/FindBackPassword.dart';
 import 'Total.dart';
+import 'package:http/http.dart' as http;
 import 'introduction_animation/introduction_animation_screen.dart';
 // import 'menu_item.dart';
 // import 'contact_item.dart';
 
-void main() => runApp(Person());
+// void main() => runApp(Person());
 class Person extends StatelessWidget {
   // This widget is the root of your application.
+  final userid;
+
+  const Person(this.userid);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home:MyPersonPage(context)
+        home:MyPersonPage(context,userid)
     );
   }
 }
@@ -25,12 +32,12 @@ class Person extends StatelessWidget {
 class MyPersonPage extends StatefulWidget {
 
   var parentContext;
-
-  MyPersonPage(this.parentContext,{Key key}) : super(key: key);
+  final userid;
+  MyPersonPage(this.parentContext,this.userid,{Key key}) : super(key: key);
 
   @override
   _MyPersonPage createState() {
-    return _MyPersonPage();
+    return _MyPersonPage(this.userid);
   }
 }
 
@@ -122,19 +129,80 @@ class MenuItem extends StatelessWidget {
 
 
 
-//个人界面主题程序
+//个人界面主体程序
 class _MyPersonPage extends State<MyPersonPage> {
+  final userid;
+
   final double _appBarHeight = 180.0;
-  final String _userHead =
+  String _userHead =
       'https://pic.616pic.com/ys_img/00/03/79/6pxmNeU4FS.jpg';
+  var feeltimes="0";
+  var breathetimes="0";
+  var spendtimes="0";
+  var picture=new NetworkImage("https://pic.616pic.com/ys_img/00/03/79/6pxmNeU4FS.jpg");
+  var _futureBuilderFuture;
+  _MyPersonPage(this.userid);
   @override
   void initState() {
     super.initState();
+    _futureBuilderFuture = getDatas();
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  Future getDatas() async {
+    return Future.wait([fetchPost(),fetchPost2()]);
+  }
+  Future<String> fetchPost() async {
+    if(userid!=null){
+      final url = Uri.parse('http://192.168.204.219:9091/getPicture');
+      final response = await http.post(url,
+          body: {'id': userid.toString()})
+          .catchError((error) {
+        print('$error错误');
+      });
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      print(responseData["data"]);
+      //处理响应数据
+      if (responseData["code"]==200){
+        _userHead=responseData["data"];
+        picture=new NetworkImage(_userHead);
+      }
+      else if (responseData["code"]==0){
+        showConfirmDialog(context, '信息加载错误，这可能是我们的问题，请稍后重新登录。', () {
+          // Navigator.pop(context);
+          // 执行确定操作后的逻辑
+        });
+      }
+    }
+    return "1";
+  }
+
+  Future<String> fetchPost2() async {
+    if (userid != null) {
+      final url2 = Uri.parse('http://192.168.204.219:9091/getUserstate');
+
+      final response = await http.post(url2,
+          body: {'id': userid.toString()})
+          .catchError((error) {
+        print('$error错误');
+      });
+      final Map<String, dynamic> responseData = json.decode(response.body);
+
+      //处理响应数据
+      if (responseData["code"] == 200) {
+        feeltimes = responseData["data"]["feeltimes"].toString();
+        breathetimes = responseData["data"]["breathetimes"].toString();
+        var enrolltimes=responseData["data"]["enrolltime"].toString();
+        var t=DateTime.parse(enrolltimes) ;
+        DateTime dateTime= DateTime.now();
+        spendtimes=dateTime.difference(t).inDays.toString();
+      }
+    }
+    return "1";
   }
 
   @override
@@ -143,8 +211,23 @@ class _MyPersonPage extends State<MyPersonPage> {
 
     return new Scaffold(
       // backgroundColor: new Color.fromARGB(175,240, 173,160),
-      body: new CustomScrollView(
-        slivers: <Widget>[
+      body:
+        FutureBuilder(
+            future: _futureBuilderFuture,
+            builder: (BuildContext context, AsyncSnapshot snapShot) {
+              print('connectionState:${snapShot.connectionState}');
+              if (snapShot.connectionState == ConnectionState.waiting) {
+                return Text('Loading...');
+              } else {
+                print(snapShot.hasError);
+                print('data:${snapShot.data}');
+                if (snapShot.hasError) {
+                  return Text('Error: ${snapShot.error}');
+                }
+                print(picture.url);
+                return new CustomScrollView(
+
+                  slivers: <Widget>[
           new SliverAppBar(
             expandedHeight: _appBarHeight,
             backgroundColor: new Color.fromARGB(255,240, 173,160),
@@ -210,7 +293,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                           ),
                           child: new CircleAvatar(
                             radius: 35.0,
-                            backgroundImage: new NetworkImage(_userHead),
+                            backgroundImage: picture,
                           ),
                         ),
                       )
@@ -241,15 +324,15 @@ class _MyPersonPage extends State<MyPersonPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         new ContactItem(
-                          count: '0天',
+                          count: spendtimes+'天',
                           title: '使用天数',
                         ),
                         new ContactItem(
-                          count: '0次',
+                          count: feeltimes+'次',
                           title: '感受记录',
                         ),
                         new ContactItem(
-                          count: '0次',
+                          count: breathetimes+'次',
                           title: '呼吸训练',
                         ),
 
@@ -388,7 +471,10 @@ class _MyPersonPage extends State<MyPersonPage> {
             ),
           )
         ],
-      ),
+                );
+              }
+              },
+        )
     );
   }
 }
