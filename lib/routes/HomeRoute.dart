@@ -118,7 +118,7 @@ class _HomeRouteState extends State<HomeRoute> {
   }
 
   void _onCheck() {
-    final url = Uri.parse('http://192.168.204.219:9091/addFeelTimes');
+    final url = Uri.parse('http://114.132.183.187:9091/addFeelTimes');
     http.post(url,
         body: {'id': this.userid.toString()})
         .then((http.Response response) {
@@ -139,7 +139,7 @@ class _HomeRouteState extends State<HomeRoute> {
   }
 
   void _onBreathing() {
-    final url = Uri.parse('http://192.168.204.219:9091/addBreatheTimes');
+    final url = Uri.parse('http://114.132.183.187:9091/addBreatheTimes');
     http.post(url,
         body: {'id': this.userid.toString()})
         .then((http.Response response) {

@@ -158,7 +158,7 @@ class _MyPersonPage extends State<MyPersonPage> {
   }
   Future<String> fetchPost() async {
     if(userid!=null){
-      final url = Uri.parse('http://192.168.204.219:9091/getPicture');
+      final url = Uri.parse('http://114.132.183.187:9091/getPicture');
       final response = await http.post(url,
           body: {'id': userid.toString()})
           .catchError((error) {
@@ -183,7 +183,7 @@ class _MyPersonPage extends State<MyPersonPage> {
 
   Future<String> fetchPost2() async {
     if (userid != null) {
-      final url2 = Uri.parse('http://192.168.204.219:9091/getUserstate');
+      final url2 = Uri.parse('http://114.132.183.187:9091/getUserstate');
 
       final response = await http.post(url2,
           body: {'id': userid.toString()})
@@ -440,15 +440,6 @@ class _MyPersonPage extends State<MyPersonPage> {
                       new MenuItem(
                         icon: Icons.print,
                         title: '更换头像',
-                        onPressed: (){
-
-                        },
-                      ),
-                      ///收藏的文章
-                      //todo
-                      new MenuItem(
-                        icon: Icons.print,
-                        title: '收藏的文章',
                         onPressed: (){
 
                         },
