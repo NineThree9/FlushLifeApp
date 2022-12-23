@@ -4,6 +4,8 @@ import 'package:health/routes/App.dart';
 import 'package:health/routes/Person.dart';
 import 'package:health/routes/HomeRoute.dart';
 import 'package:health/routes/SplashRoute.dart';
+
+import 'Explore.dart';
 //MyApp 是整个app
 //App是首页
 //Person是 个人信息
@@ -45,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    this._pageNo = [App(this.userid), App(this.userid), Person(this.userid)];
+    this._pageNo = [App(this.userid), Explore(), Person(this.userid)];
     return Scaffold(
       
       body: _pageNo[selectedpage],
