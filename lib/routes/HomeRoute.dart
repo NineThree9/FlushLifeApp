@@ -498,7 +498,7 @@ class _HomeRouteState extends State<HomeRoute> {
                 padding: EdgeInsets.only(
                     left: 20.pt, right: 20.pt, top: 32.pt, bottom: 30.pt),
                 child: Text(
-                  "纯净噪音",
+                  "白噪音",
                   style: TextStyle(
                       fontSize: 18.pt,
                       color: const Color(0xFF333333),

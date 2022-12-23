@@ -31,9 +31,17 @@ class _FindBackPageState extends State<FindBackPage> {
     //     child: Image.asset("imgs/sound/5_pale2.jpg"),//图片
     //   ),
     // );
-    final logo = Image.asset("imgs/sound/5_pale2.jpg");//图片
+    // final logo = Image.asset("imgs/sound/Aeolian.jpg");//图片
 
-
+    final logo=Card(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusDirectional.circular(20)),
+      clipBehavior: Clip.antiAlias,
+      child: Image.asset(
+        "imgs/sound/Aeolian.jpg",
+        width: double.maxFinite,
+      ),
+    );
     final username = TextFormField(//用户名
       controller:this.nameController,
 

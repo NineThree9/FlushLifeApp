@@ -1,453 +1,128 @@
-//
-//
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-//
-// class OverdueUrgeReplyPage extends StatefulWidget {
-//   final String orderNo;
-//
-//   OverdueUrgeReplyPage({
-//     Key key,
-//     @required this.orderNo,
-//   }) : super(key: key);
-//
-//   _OverdueUrgeReplyPageState createState() => _OverdueUrgeReplyPageState();
-// }
-//
-// class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
-//   TextEditingController textEditingController;
-//   ScrollController _scrollController = ScrollController(); //listview的控制器
-//   double contentMaxWidth;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     textEditingController = TextEditingController();
-//
-//   }
-//
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     contentMaxWidth = MediaQuery.of(context).size.width - 90;
-//     return Scaffold(
-//       backgroundColor: new Color.fromARGB(200, 238, 128, 85),
-//       appBar: AppBar(
-//         title: ,
-//       ),
-//       body: Container(
-//         width: double.infinity,
-//         height: double.infinity,
-//         color: Color(0xFFF1F5FB),
-//         child: Column(
-//           children: <Widget>[
-//             Expanded(
-//               flex: 1,
-//               child: Container(
-//                 //列表内容少的时候靠上
-//                 alignment: Alignment.topCenter,
-//                 child: _renderList(),
-//               ),
-//             ),
-//             Container(
-//               decoration: BoxDecoration(
-//                 color: Colors.white,
-//                 boxShadow: [
-//                   BoxShadow(
-//                     color: Color(0x14000000),
-//                     blurRadius: 10,
-//                   ),
-//                 ],
-//               ),
-//               child: Row(
-//                 crossAxisAlignment: CrossAxisAlignment.end,
-//                 children: <Widget>[
-//                   Expanded(
-//                     child:Container(
-//                       margin: EdgeInsets.fromLTRB(15, 10, 0, 10),
-//                       constraints: BoxConstraints(
-//                         maxHeight: 100.0,
-//                         minHeight: 50.0,
-//                       ),
-//                       decoration: BoxDecoration(
-//                           color:  Color(0xFFF5F6FF),
-//                           borderRadius: BorderRadius.all(Radius.circular(2))
-//                       ),
-//                       child: TextField(
-//                         controller: textEditingController,
-//                         cursorColor:Color(0xFF464EB5),
-//                         maxLines: null,
-//                         maxLength: 200,
-//                         decoration: InputDecoration(
-//                           counterText: '',
-//                           border: InputBorder.none,
-//                           contentPadding: EdgeInsets.only(
-//                               left: 16.0, right: 16.0, top: 10.0, bottom:10.0),
-//                           hintText: "回复",
-//                           hintStyle: TextStyle(
-//                               color: Color(0xFFADB3BA),
-//                               fontSize:15
-//                           ),
-//                         ),
-//                         style: TextStyle(
-//                             color: Color(0xFF03073C),
-//                             fontSize:15
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                   GestureDetector(
-//                     behavior: HitTestBehavior.opaque,
-//                     child: Container(
-//                       padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-//                       alignment: Alignment.center,
-//                       height: 70,
-//                       child: Text(
-//                         '发送',
-//                         style: TextStyle(
-//                           color: Color(0xFF464EB5),
-//                           fontSize: 14,
-//                         ),
-//                       ),
-//                     ),
-//                     onTap: () {
-//                       sendTxt();
-//                     },
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-//
-//   List list = []; //列表要展示的数据
-//
-//   _renderList() {
-//     return GestureDetector(
-//       child: ListView.builder(
-//         reverse: true,
-//         shrinkWrap: true,
-//         padding: EdgeInsets.only(top: 27),
-//         itemBuilder: (context, index) {
-//           var item = list[index];
-//           return GestureDetector(
-//             child: item['employeeNo'] == employeeNo
-//                 ? _renderRowSendByMe(context, item)
-//                 : _renderRowSendByOthers(context, item),
-//             onTap: () {},
-//           );
-//         },
-//         itemCount: list.length,
-//         physics: const AlwaysScrollableScrollPhysics(),
-//         controller: _scrollController,
-//       ),
-//       onTap: () {
-//         FocusScope.of(context).requestFocus(FocusNode());
-//       },
-//     );
-//   }
-//
-//   Widget _renderRowSendByOthers(BuildContext context, item) {
-//     return Container(
-//       padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-//       child: Column(
-//         children: <Widget>[
-//           Padding(
-//             child: Text(
-//               CommonUtils.timeStampFormat(item['createdAt']),
-//               textAlign: TextAlign.center,
-//               style: TextStyle(
-//                 color: Color(0xFFA1A6BB),
-//                 fontSize: 14,
-//               ),
-//             ),
-//             padding: EdgeInsets.only(bottom: 20),
-//           ),
-//           Padding(
-//             padding: EdgeInsets.only(left: 15,right: 45),
-//             child: Row(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: <Widget>[
-//                 Container(
-//                   alignment: Alignment.center,
-//                   width: 30,
-//                   height: 30,
-//                   decoration: BoxDecoration(
-//                       color: Color(0xFF464EB5),
-//                       borderRadius: BorderRadius.all(Radius.circular(15))),
-//                   child: Padding(
-//                     child: Text(
-//                       item['name'].toString().substring(0, 1),
-//                       textAlign: TextAlign.center,
-//                       style: TextStyle(
-//                         color: Colors.white,
-//                         fontSize: 14,
-//                       ),
-//                     ),
-//                     padding: EdgeInsets.only(bottom: 2),
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: Column(
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: <Widget>[
-//                       Padding(
-//                         child: Text(
-//                           item['name'],
-//                           softWrap: true,
-//                           style: TextStyle(
-//                             color: Color(0xFF677092),
-//                             fontSize: 14,
-//                           ),
-//                         ),
-//                         padding: EdgeInsets.only(left: 20, right: 30),
-//                       ),
-//                       Stack(
-//                         children: <Widget>[
-//                           Container(
-//                             child: Image(
-//                                 width: 11,
-//                                 height: 20,
-//                                 image: AssetImage(
-//                                     "static/images/chat_white_arrow.png")),
-//                             margin: EdgeInsets.fromLTRB(2, 16, 0, 0),
-//                           ),
-//                           Container(
-//                             decoration: BoxDecoration(
-//                                 boxShadow: [
-//                                   BoxShadow(
-//                                     offset: Offset(4.0, 7.0),
-//                                     color: Color(0x04000000),
-//                                     blurRadius: 10,
-//                                   ),
-//                                 ],
-//                                 color: Colors.white,
-//                                 borderRadius:
-//                                 BorderRadius.all(Radius.circular(10))),
-//                             margin: EdgeInsets.only(top: 8, left: 10),
-//                             padding: EdgeInsets.all(10),
-//                             child: Text(
-//                               item['reply'],
-//                               style: TextStyle(
-//                                 color: Color(0xFF03073C),
-//                                 fontSize: 15,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-//
-//   Widget _renderRowSendByMe(BuildContext context, item) {
-//     return Container(
-//       padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-//       child: Column(
-//         children: <Widget>[
-//           Padding(
-//             child: Text(
-//               CommonUtils.timeStampFormat(item['createdAt']),
-//               textAlign: TextAlign.center,
-//               style: TextStyle(
-//                 color: Color(0xFFA1A6BB),
-//                 fontSize: 14,
-//               ),
-//             ),
-//             padding: EdgeInsets.only(bottom: 20),
-//           ),
-//           Row(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             textDirection: TextDirection.rtl,
-//             children: <Widget>[
-//               Container(
-//                 margin: EdgeInsets.only(right: 15),
-//                 alignment: Alignment.center,
-//                 width: 30,
-//                 height: 30,
-//                 decoration: BoxDecoration(
-//                     color: Color(0xFF464EB5),
-//                     borderRadius: BorderRadius.all(Radius.circular(15))),
-//                 child: Padding(
-//                   child: Text(
-//                     item['name'].toString().substring(0, 1),
-//                     textAlign: TextAlign.center,
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                       fontSize: 14,
-//                     ),
-//                   ),
-//                   padding: EdgeInsets.only(bottom: 2),
-//                 ),
-//               ),
-//               Column(
-//                 crossAxisAlignment: CrossAxisAlignment.end,
-//                 children: <Widget>[
-//                   Padding(
-//                     child: Text(
-//                       item['name'],
-//                       softWrap: true,
-//                       style: TextStyle(
-//                         color: Color(0xFF677092),
-//                         fontSize: 14,
-//                       ),
-//                     ),
-//                     padding: EdgeInsets.only(right: 20),
-//                   ),
-//                   Stack(
-//                     alignment: Alignment.topRight,
-//                     children: <Widget>[
-//                       Container(
-//                         child: Image(
-//                             width: 11,
-//                             height: 20,
-//                             image: AssetImage(
-//                                 "static/images/chat_purple_arrow.png")),
-//                         margin: EdgeInsets.fromLTRB(0, 16, 2, 0),
-//                       ),
-//                       Row(
-//                         textDirection: TextDirection.rtl,
-//                         children: <Widget>[
-//                           ConstrainedBox(
-//                             child: Container(
-//                               margin: EdgeInsets.only(top: 8, right: 10),
-//                               decoration: BoxDecoration(
-//                                   boxShadow: [
-//                                     BoxShadow(
-//                                       offset: Offset(4.0, 7.0),
-//                                       color: Color(0x04000000),
-//                                       blurRadius: 10,
-//                                     ),
-//                                   ],
-//                                   color: Color(0xFF838CFF),
-//                                   borderRadius:
-//                                   BorderRadius.all(Radius.circular(10))),
-//                               padding: EdgeInsets.all(10),
-//                               child: Text(
-//                                 item['reply'],
-//                                 softWrap: true,
-//                                 style: TextStyle(
-//                                   color: Colors.white,
-//                                   fontSize: 15,
-//                                 ),
-//                               ),
-//                             ),
-//                             constraints: BoxConstraints(
-//                               maxWidth: contentMaxWidth,
-//                             ),
-//                           ),
-//                           Container(
-//                               margin: EdgeInsets.fromLTRB(0, 8, 8, 0),
-//                               child: item['status'] == SENDING_TYPE
-//                                   ? ConstrainedBox(
-//                                 constraints:
-//                                 BoxConstraints(maxWidth: 10, maxHeight: 10),
-//                                 child: Container(
-//                                   width: 10,
-//                                   height: 10,
-//                                   child: CircularProgressIndicator(
-//                                     strokeWidth: 2.0,
-//                                     valueColor: new AlwaysStoppedAnimation<Color>(
-//                                         Colors.grey),
-//                                   ),
-//                                 ),
-//                               )
-//                                   : item['status'] == FAILED_TYPE
-//                                   ? Image(
-//                                   width: 11,
-//                                   height: 20,
-//                                   image: AssetImage(
-//                                       "static/images/network_error_icon.png"))
-//                                   : Container()),
-//                         ],
-//                       ),
-//                     ],
-//                   ),
-//                 ],
-//               ),
-//             ],
-//           )
-//         ],
-//       ),
-//     );
-//   }
-//
-//   final int maxValue = 1<<32;
-//
-//   sendTxt() async {
-//     int tag = random.nextInt(maxValue);
-//     if (CommonUtils.isEmpty(textEditingController.value.text.trim())) {
-//       return;
-//     }
-//     String message = textEditingController.value.text;
-//     addMessage(message, tag);
-//     textEditingController.text = '';
-//     String url = '${Address.getPrefix()}hbpay/overdue/urge/saveReply';
-//     var res = await httpManager.netFetch(url,
-//         data: {
-//           'cusUid': userId,
-//           'orderNo': widget.orderNo,
-//           'employeeNo': employeeNo,
-//           'name': userName,
-//           'reply': message,
-//           'tag': '${tag}',
-//         },
-//         options: Options(method: 'post'),
-//         showLoadingForPost: false);
-//
-//     int index = 0;
-//     if (res.result) {
-//       for(int i = 0; index < list.length; i++) {
-//         if (list[i]['tag'] == res.data) {
-//           index = i;
-//           break;
-//         }
-//       }
-//       setState(() {
-//         list[index]['status'] = SUCCESSED_TYPE;
-//       });
-//     } else {
-//       setState(() {
-//         list[index]['status'] = FAILED_TYPE;
-//       });
-//     }
-//   }
-//
-//   final random = Random();
-//
-//   addMessage(content, tag) {
-//     int time = new DateTime.now().millisecondsSinceEpoch;
-//     setState(() {
-//       list.insert(0, {
-//         "createdAt": time,
-//         "cusUid": userId,
-//         "employeeNo": employeeNo,
-//         "name": userName,
-//         "orderNo": widget.orderNo,
-//         "reply": content,
-//         "updatedAt": time,
-//         'status': SENDING_TYPE,
-//         'tag': '${tag}',
-//       });
-//     });
-//     Timer(
-//         Duration(milliseconds: 100),
-//             () => _scrollController.jumpTo(0));
-//   }
-//
-//   static int SENDING_TYPE = 0;
-//   static int FAILED_TYPE = 1;
-//   static int SUCCESSED_TYPE = 2;
-// }
-//
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+
+import '../Information/enroll_widget.dart';
+import '../Total.dart';
+import 'package:http/http.dart' as http;
+
+//找回密码
+class FeedBackPage extends StatefulWidget {
+
+  static String tag = 'feedback-page';
+  var parentContext;
+
+  FeedBackPage(this.parentContext);
+  @override
+  _FindBackPageState createState() => new _FindBackPageState();
+}
+
+class _FindBackPageState extends State<FeedBackPage> {
+  final textController = TextEditingController();
+  final titleController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+
+    // final logo = Image.asset("imgs/sound/seria.jpg");//图片
+    final logo=Card(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusDirectional.circular(20)),
+      clipBehavior: Clip.antiAlias,
+      child: Image.asset(
+        "imgs/sound/seria.jpg",
+        width: double.maxFinite,
+      ),
+    );
+
+    final username = TextFormField(//用户名
+      controller:this.titleController,
+
+      autofocus: false,//是否自动对焦
+      decoration: InputDecoration(
+          hintText: '请输入反馈标题',//提示内容
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),//上下左右边距设置
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32.0)//设置圆角大小
+          )
+      ),
+    );
+
+    final useremail= TextFormField(//密码
+      autofocus: false,
+      obscureText: false,
+      controller:this.textController,
+      maxLines: 15,
+      decoration: InputDecoration(
+          hintText: '请输入反馈正文',
+
+          // contentPadding: const EdgeInsets.symmetric(vertical: 100.0),
+          // contentPadding: EdgeInsets.fromLTRB(10.0,10.0, 10.0, 100.0),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32.0)
+          )
+      ),
+    );
+
+    final sendButton = Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),//上下各添加16像素补白
+      child: Material(
+        borderRadius: BorderRadius.circular(30.0),// 圆角度
+        shadowColor: Colors.lightBlueAccent.shade100,//阴影颜色
+        elevation: 5.0,//浮动的距离
+        child: MaterialButton(
+          minWidth: 200.0,
+          height: 42.0,
+          onPressed: (){
+            final url = Uri.parse('http://114.132.183.187:9091/sendFeedBack');
+            http.post(url,
+                body: {'text': this.textController.text,'title':this.titleController.text})
+                .then((http.Response response) {
+              final Map<String, dynamic> responseData = json.decode(response.body);
+              //处理响应数据
+              if (responseData["code"]==200){
+                showConfirmDialog(context, "您的反馈已提交，请关注后续软件更新", () {
+                  Navigator.pop(context);
+                });
+              }
+              else {
+                showConfirmDialog(context, '暂时提交失败，请稍后重试', () {
+                  // Navigator.pop(context);
+                  // 执行确定操作后的逻辑
+                });
+              }
+
+
+            }).catchError((error) {
+              print('$error错误');
+            });
+
+          },
+          color: Color(0xFFF89500),//按钮颜色
+          child: Text('提交', style: TextStyle(color: Colors.white, fontSize: 20.0),),
+        ),
+      ),
+    );
+
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: ListView(//将这些组件全部放置在ListView中
+          shrinkWrap: true,//内容适配
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),//左右填充24个像素块
+          children: <Widget>[
+            logo,
+            SizedBox(height: 20.0,),//用来设置两个控件之间的间距
+            username,
+            SizedBox(height: 8.0,),
+            useremail,
+            SizedBox(height: 24.0,),
+            sendButton,
+          ],
+        ),
+      ),
+    );
+  }
+
+}

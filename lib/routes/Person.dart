@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:health/routes/Information/page/welcome_page.dart';
 
+import 'MyFunction/FeedBack.dart';
 import 'MyFunction/FindBackPassword.dart';
 import 'Total.dart';
 import 'package:http/http.dart' as http;
@@ -136,6 +137,7 @@ class _MyPersonPage extends State<MyPersonPage> {
   final double _appBarHeight = 180.0;
   String _userHead =
       'https://pic.616pic.com/ys_img/00/03/79/6pxmNeU4FS.jpg';
+  String _username="请登录FlushLife";
   var feeltimes="0";
   var breathetimes="0";
   var spendtimes="0";
@@ -158,17 +160,18 @@ class _MyPersonPage extends State<MyPersonPage> {
   }
   Future<String> fetchPost() async {
     if(userid!=null){
-      final url = Uri.parse('http://114.132.183.187:9091/getPicture');
+      final url = Uri.parse('http://114.132.183.187:9091/getUser');
       final response = await http.post(url,
           body: {'id': userid.toString()})
           .catchError((error) {
         print('$error错误');
       });
       final Map<String, dynamic> responseData = json.decode(response.body);
-      print(responseData["data"]);
+      // print(responseData["data"]);
       //处理响应数据
       if (responseData["code"]==200){
-        _userHead=responseData["data"];
+        _userHead=responseData["data"]["userpicture"];
+        _username="你好！ "+responseData["data"]["username"];
         picture=new NetworkImage(_userHead);
       }
       else if (responseData["code"]==0){
@@ -264,7 +267,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                                 bottom: 15.0,
                               ),
                               child: new Text(
-                                'FlushLife',
+                                _username,
                                 style: new TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -457,7 +460,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                             //     },
                             //     settings: RouteSettings()));
                             Navigator.push(widget.parentContext,
-                                MaterialPageRoute(builder: (context) => FindBackPage(widget.parentContext)));
+                                MaterialPageRoute(builder: (context) => FeedBackPage(widget.parentContext)));
                           }
                       ),
                       ///退出账号
