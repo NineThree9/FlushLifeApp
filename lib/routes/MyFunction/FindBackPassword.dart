@@ -1,35 +1,45 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
+import '../Information/enroll_widget.dart';
 import '../Total.dart';
-//找回密码
-class LoginPage extends StatefulWidget {
+import 'package:http/http.dart' as http;
 
-  static String tag = 'login-page';
+//找回密码
+class FindBackPage extends StatefulWidget {
+
+  static String tag = 'findback-page';
   var parentContext;
 
-  LoginPage(this.parentContext);
+  FindBackPage(this.parentContext);
   @override
-  _LoginPageState createState() => new _LoginPageState();
+  _FindBackPageState createState() => new _FindBackPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _FindBackPageState extends State<FindBackPage> {
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final logo = Hero(//飞行动画
-      tag: 'hero',
-      child: CircleAvatar(//圆形图片组件
-        backgroundColor: Colors.transparent,//透明
-        radius: 48.0,//半径
-        child: Image.asset("imgs/meditation/11.png"),//图片
-      ),
-    );
+    // final logo = Hero(//飞行动画
+    //   tag: 'hero',
+    //   child: CircleAvatar(//圆形图片组件
+    //     backgroundColor: Colors.Black,//透明
+    //     radius: 120.0,//半径
+    //     child: Image.asset("imgs/sound/5_pale2.jpg"),//图片
+    //   ),
+    // );
+    final logo = Image.asset("imgs/sound/5_pale2.jpg");//图片
 
-    final email = TextFormField(//用户名
-      keyboardType: TextInputType.emailAddress,
+
+    final username = TextFormField(//用户名
+      controller:this.nameController,
+
       autofocus: false,//是否自动对焦
-      initialValue: 'admin',//默认输入的类容
       decoration: InputDecoration(
-          hintText: '请输入用户名',//提示内容
+          hintText: '请输入希望找回的用户名',//提示内容
           contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),//上下左右边距设置
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32.0)//设置圆角大小
@@ -37,12 +47,13 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    final password = TextFormField(//密码
+    final useremail= TextFormField(//密码
+      keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: 'admin',
-      obscureText: true,
+      obscureText: false,
+        controller:this.emailController,
       decoration: InputDecoration(
-          hintText: '请输入密码',
+          hintText: '请输入希望找回的邮箱',
           contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32.0)
@@ -60,22 +71,45 @@ class _LoginPageState extends State<LoginPage> {
           minWidth: 200.0,
           height: 42.0,
           onPressed: (){
-            Navigator.pushAndRemoveUntil(widget.parentContext,
-                MaterialPageRoute(builder: (context) => MyHomePage()),
-                  (route) => false,
-            );
+            final url = Uri.parse('http://114.132.183.187:9091/findPassword');
+            // print(this.loginemailController.text);
+            // print(this.loginpasswordController.text);
+            http.post(url,
+                body: {'useremail': this.emailController.text,'username':this.nameController.text})
+                .then((http.Response response) {
+              final Map<String, dynamic> responseData = json.decode(response.body);
+              //处理响应数据
+              if (responseData["code"]==200){
+                showConfirmDialog(context, '您的密码为'+responseData["data"], () {
+
+                });
+              }
+              else if (responseData["code"]==0){
+                showConfirmDialog(context, '咱不存在此用户，您可以选择注册', () {
+                  // Navigator.pop(context);
+                  // 执行确定操作后的逻辑
+                });
+              }
+
+
+            }).catchError((error) {
+              print('$error错误');
+            });
+            // Navigator.pushAndRemoveUntil(
+            //   // widget.parentContext,
+            //     // MaterialPageRoute(builder: (context) => MyHomePage()),
+            //     //   (route) => false,
+            //
+            // );
             // Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
+
           },
-          color: Colors.green,//按钮颜色
-          child: Text('登 录', style: TextStyle(color: Colors.white, fontSize: 20.0),),
+          color: Color(0xFFF89500),//按钮颜色
+          child: Text('找回', style: TextStyle(color: Colors.white, fontSize: 20.0),),
         ),
       ),
     );
 
-    final forgotLabel = FlatButton(//扁平化的按钮，前面博主已经讲解过
-      child: Text('忘记密码?', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
-      onPressed: () {},
-    );
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -86,12 +120,11 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             logo,
             SizedBox(height: 48.0,),//用来设置两个控件之间的间距
-            email,
+            username,
             SizedBox(height: 8.0,),
-            password,
+            useremail,
             SizedBox(height: 24.0,),
             loginButton,
-            forgotLabel
           ],
         ),
       ),

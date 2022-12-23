@@ -432,7 +432,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                             //     },
                             //     settings: RouteSettings()));
                             Navigator.push(widget.parentContext,
-                                MaterialPageRoute(builder: (context) => LoginPage(widget.parentContext)));
+                                MaterialPageRoute(builder: (context) => FindBackPage(widget.parentContext)));
                           }
                       ),
                       ///更换头像
@@ -457,7 +457,7 @@ class _MyPersonPage extends State<MyPersonPage> {
                             //     },
                             //     settings: RouteSettings()));
                             Navigator.push(widget.parentContext,
-                                MaterialPageRoute(builder: (context) => LoginPage(widget.parentContext)));
+                                MaterialPageRoute(builder: (context) => FindBackPage(widget.parentContext)));
                           }
                       ),
                       ///退出账号
