@@ -207,7 +207,7 @@ class _BreathRouteState extends State<BreathRoute>
     } else if (time < 5) {
       breathText = "吸气";
     } else if (time < 7) {
-      breathText = "摒气";
+      breathText = "保持";
     } else if (time < 12) {
       breathText = "呼气";
     } else {

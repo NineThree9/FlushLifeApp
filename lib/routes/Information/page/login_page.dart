@@ -13,6 +13,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  _LoginPageState(){
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
           Image.asset('imgs/meditation/2.png'),
           Column(
             children: [
-              SizedBox(height: 200),
+              SizedBox(height: 300),
               // Spacer(),
               ClipPath(
                 clipper: LoginClipper(),
@@ -45,7 +49,9 @@ class _LoginPageState extends State<LoginPage> {
 
 /// 登录页面内容体
 class LoginBodyWidget extends StatelessWidget {
-  const LoginBodyWidget({
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  LoginBodyWidget({
     Key key,
   }) : super(key: key);
 
@@ -73,6 +79,7 @@ class LoginBodyWidget extends StatelessWidget {
           LoginInput(
             hintText: 'Email',
             prefixIcon: 'assets/icons/icon_email.png',
+            mycontroller:this.emailController,
           ),
           SizedBox(height: 16),
           Text(
@@ -83,10 +90,11 @@ class LoginBodyWidget extends StatelessWidget {
           LoginInput(
             hintText: 'Password',
             prefixIcon: 'assets/icons/icon_pwd.png',
+            mycontroller:this.passwordController,
             obscureText: true,
           ),
           SizedBox(height: 32),
-          LoginBtnIconWidget(),
+          LoginBtnIconWidget(loginemailController: this.emailController,loginpasswordController: this.passwordController),
           SizedBox(height: 32),
         ],
       ),

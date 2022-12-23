@@ -32,11 +32,14 @@ class _SoundRouteState extends State<SoundRoute> {
   var lastBufferedPosition = Duration();
 
   List<String> bgList = [
-    "imgs/sound/backgroud_sounds_1.jpg",
-    "imgs/sound/backgroud_sounds_2.jpg",
-    "imgs/sound/backgroud_sounds_3.jpg",
-    "imgs/sound/backgroud_sounds_4.jpg",
-    "imgs/sound/backgroud_sounds_5.jpg",
+    "imgs/sound/1596290989060.jpeg",
+"imgs/sound/1596291278263.jpeg",
+    "imgs/sound/1596291347891.jpeg",
+    "imgs/sound/v2-53ed0c5fed6a742c5b4d08a008fcc744.jpg",
+    "imgs/sound/sb_51d9d9af-810f-4180-8914-8f430372e81c_1608982052145.jpg",
+    "imgs/sound/1596291301006.jpeg",
+
+
   ];
 
   int bg_index = 0;

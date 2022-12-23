@@ -1,10 +1,15 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:health/routes/App.dart';
+import 'package:health/routes/Total.dart';
 import 'package:health/routes/information/theme/app_size.dart';
 import 'package:health/routes/information/theme/app_style.dart';
 import 'package:health/routes/information/welcome_widget.dart';
+import 'package:http/http.dart' as http;
 
+import 'enroll_widget.dart';
 ///登录页面剪裁曲线
 class LoginClipper extends CustomClipper<Path> {
   // 第一个点
@@ -51,9 +56,17 @@ class LoginClipper extends CustomClipper<Path> {
 
 /// 登录图标按钮
 class LoginBtnIconWidget extends StatelessWidget {
-  const LoginBtnIconWidget({
-    Key key,
-  }) : super(key: key);
+  final loginemailController;
+  final loginpasswordController;
+
+  LoginBtnIconWidget({
+    Key key, this.loginemailController, this.loginpasswordController,
+
+  });
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +91,45 @@ class LoginBtnIconWidget extends StatelessWidget {
             ],
           ),
           onTap: () {
-            Navigator.pop(context);
+            final url = Uri.parse('http://192.168.204.219:9091/login');
+            // print(this.loginemailController.text);
+            // print(this.loginpasswordController.text);
+            http.post(url,
+                body: {'useremail': this.loginemailController.text,'userpassword':this.loginpasswordController.text})
+                .then((http.Response response) {
+              final Map<String, dynamic> responseData = json.decode(response.body);
+
+              //处理响应数据
+              if (responseData["code"]==200){
+                // showConfirmDialog(context, '注册成功，请保存好账户数据。返回登录界面登录', () {
+                //   Navigator.pop(context);
+                print(responseData);
+                print(responseData["data"]);
+                print(responseData["data"]["id"]);
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (BuildContext context){
+                        return MyApp(responseData["data"]["id"]);
+                      }
+                  ),
+                 (route) => false
+              );
+
+                  // 执行确定操作后的逻辑
+                // });
+              }
+              else if (responseData["code"]==0){
+                showConfirmDialog(context, '账号信息错误，请检查输入后重试', () {
+                  // Navigator.pop(context);
+                  // 执行确定操作后的逻辑
+                });
+              }
+
+
+            }).catchError((error) {
+              print('$error错误');
+            });
+            // Navigator.pop(context);
           },
         )
       ],
@@ -88,20 +139,23 @@ class LoginBtnIconWidget extends StatelessWidget {
 
 ///登录输入框
 class LoginInput extends StatelessWidget {
-  const LoginInput({
+  LoginInput({
     Key key,
     this.hintText,
     this.prefixIcon,
     this.obscureText = false,
+    this.mycontroller,
   }) : super(key: key);
 
   final String hintText;
   final String prefixIcon;
   final bool obscureText;
+  final mycontroller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: mycontroller,
       decoration: InputDecoration(
         hintText: hintText,
         border: kInputBorder,

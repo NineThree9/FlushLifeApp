@@ -21,20 +21,24 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'selfAssessment/AssessmentEnterName.dart';
 import 'package:health/extension/ScreenExtension.dart';
+import 'package:http/http.dart' as http;
 
 class HomeRoute extends StatefulWidget {
   static const String homeName = "/home";
+  final userid;
+
+  HomeRoute(this.userid);
 
   @override
   State<StatefulWidget> createState() {
-    return _HomeRouteState();
+    return _HomeRouteState(this.userid);
   }
 }
 
 class _HomeRouteState extends State<HomeRoute> {
   ///用户名
   String nickName;
-
+  final userid;
   ///标题栏颜色和透明度
   Color _timeColor = Colors.white;
   int alpha = 0;
@@ -46,6 +50,8 @@ class _HomeRouteState extends State<HomeRoute> {
 
   ///日夜间
   bool isDay = false;
+
+  _HomeRouteState(this.userid);
 
   DbHelper get dbHelper => Provider.of<DbHelper>(context, listen: false);
 
@@ -112,18 +118,36 @@ class _HomeRouteState extends State<HomeRoute> {
   }
 
   void _onCheck() {
+    final url = Uri.parse('http://192.168.204.219:9091/addFeelTimes');
+    http.post(url,
+        body: {'id': this.userid.toString()})
+        .then((http.Response response) {
+      final Map<String, dynamic> responseData = json.decode(response.body);
+    }).catchError((error) {
+      print('$error错误');
+    });
     ReportUtil.getInstance()
         .trackEvent(eventName: EventConstants.feeling_check);
     Navigator.of(context).pushNamed(SelfAssessmentRoute.selfAssessmentName);
   }
 
   void _onSoundPlay() {
+
     ReportUtil.getInstance().trackEvent(eventName: EventConstants.sounds_click);
     Navigator.of(context).push(
         SlideVerticalRoute(child: SoundRoute(), settings: RouteSettings()));
   }
 
   void _onBreathing() {
+    final url = Uri.parse('http://192.168.204.219:9091/addBreatheTimes');
+    http.post(url,
+        body: {'id': this.userid.toString()})
+        .then((http.Response response) {
+      final Map<String, dynamic> responseData = json.decode(response.body);
+
+    }).catchError((error) {
+      print('$error错误');
+    });
     ReportUtil.getInstance()
         .trackEvent(eventName: EventConstants.breathing_click);
     Map<String, dynamic> map = Map();
@@ -187,7 +211,7 @@ class _HomeRouteState extends State<HomeRoute> {
                           top: 12.35 + MediaQuery.of(context).padding.top,
                           right: 20.13),
                       child: Text(
-                        "你好啊,$nickName",
+                        "你好啊,欢迎使用FlushLife",
                         style: TextStyle(
                             color: const Color(0xFF333333),
                             fontSize: 28,
@@ -201,7 +225,7 @@ class _HomeRouteState extends State<HomeRoute> {
                       padding: EdgeInsets.symmetric(
                           vertical: 9.2, horizontal: 20.13),
                       child: Text(
-                        "${DateFormat("EEEE, MMM d").format(DateTime.now())}",
+                        "${DateFormat("yyyy"+"年"+"MM"+"月"+"dd"+"日").format(DateTime.now())}",
                         style: TextStyle(
                             color: const Color(0xFF333333),
                             fontSize: 16,
@@ -306,7 +330,7 @@ class _HomeRouteState extends State<HomeRoute> {
                             padding: EdgeInsets.symmetric(
                                 vertical: 7.pt, horizontal: 14.pt),
                             child: Text(
-                              "现在感觉如何?",
+                              "现在感觉怎么样?",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.pt,
@@ -371,7 +395,7 @@ class _HomeRouteState extends State<HomeRoute> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "我的感受记录",
+            "我的情感变化轨迹",
             style: TextStyle(
                 fontSize: 20.pt,
                 color: const Color(0xFF000000),
@@ -386,7 +410,7 @@ class _HomeRouteState extends State<HomeRoute> {
   buildMoodCheckItems(FlowModel flowModel) {
     String feelingText = flowModel.feeling.isPositive
         ? "我感觉\"${flowModel.feeling.feelingText}\"."
-        : "我感觉\"${flowModel.feeling.feelingText}\",但是我冲刷掉了负面情绪.";
+        : "我感觉\"${flowModel.feeling.feelingText}\",但是我Flsuh掉了他们.";
     return Container(
       margin: EdgeInsets.all(4.5.pt),
       width: 151.pt,
@@ -442,7 +466,7 @@ class _HomeRouteState extends State<HomeRoute> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "正念时刻",
+            "专注此刻，让下面的工具帮帮你吧",
             style: TextStyle(
                 fontSize: 20.pt,
                 color: const Color(0xFF000000),
@@ -474,7 +498,7 @@ class _HomeRouteState extends State<HomeRoute> {
                 padding: EdgeInsets.only(
                     left: 20.pt, right: 20.pt, top: 32.pt, bottom: 30.pt),
                 child: Text(
-                  "白噪音",
+                  "纯净噪音",
                   style: TextStyle(
                       fontSize: 18.pt,
                       color: const Color(0xFF333333),

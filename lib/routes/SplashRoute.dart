@@ -12,15 +12,21 @@ import 'package:health/routes/Total.dart';
 class SplashRoute extends StatefulWidget {
   static const String splashName = "/splash";
 
+  const SplashRoute({Key key,this.userid}) : super(key: key);
+
+  final userid;
   @override
-  _SplashRouteState createState() => _SplashRouteState();
+  _SplashRouteState createState() => _SplashRouteState(userid:this.userid);
 }
 
 class _SplashRouteState extends State<SplashRoute> {
   final String firstOpened = "first_opened";
 
+  final userid;
   bool isFirstOpen = false;
   Timer _timer;
+
+  _SplashRouteState({Key key,this.userid});
 
   @override
   void initState() {
@@ -55,7 +61,7 @@ class _SplashRouteState extends State<SplashRoute> {
     Navigator.of(context).push(PageRouteBuilder(
         pageBuilder: (BuildContext context, Animation animation,
             Animation secondaryAnimation) {
-          return MyHomePage();
+          return MyHomePage(userid:this.userid);
         },
         settings: RouteSettings()));
     _timer.cancel();
