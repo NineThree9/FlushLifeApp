@@ -169,6 +169,7 @@ class _MyPersonPage extends State<MyPersonPage> {
       final Map<String, dynamic> responseData = json.decode(response.body);
       // print(responseData["data"]);
       //处理响应数据
+      print(responseData);
       if (responseData["code"]==200){
         _userHead=responseData["data"]["userpicture"];
         _username="你好！ "+responseData["data"]["username"];
