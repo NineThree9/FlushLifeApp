@@ -15,7 +15,7 @@
 //   @override
 //   _CropImageRouteState createState() => new _CropImageRouteState();
 // }
-//
+///裁剪照片
 // class _CropImageRouteState extends State<CropImageRoute> {
 //   double baseLeft; //图片左上角的x坐标
 //   double baseTop; //图片左上角的y坐标

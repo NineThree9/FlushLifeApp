@@ -38,15 +38,16 @@ class _SplashViewState extends State<SplashView> {
             Padding(
               padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: Text(
-                "Clearhead",
+                "FlushLife",
                 style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 64, right: 64),
               child: Text(
-                "Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore",
+                "你是否感觉到疲惫，难以找到内心的平衡?\n 让FlushLife帮助你吧，重新出发",
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -72,7 +73,7 @@ class _SplashViewState extends State<SplashView> {
                     color: Color(0xff132137),
                   ),
                   child: Text(
-                    "Let's begin",
+                    "开始吧",
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,

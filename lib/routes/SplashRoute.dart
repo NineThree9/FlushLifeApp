@@ -9,6 +9,8 @@ import 'package:health/routes/splash/SplashPage.dart';
 import 'guide/GuideRoute.dart';
 import 'package:health/routes/Total.dart';
 
+import 'introduction_animation/introduction_animation_screen.dart';
+
 class SplashRoute extends StatefulWidget {
   static const String splashName = "/splash";
 
@@ -49,7 +51,7 @@ class _SplashRouteState extends State<SplashRoute> {
     Navigator.of(context).push(PageRouteBuilder(
         pageBuilder: (BuildContext context, Animation animation,
             Animation secondaryAnimation) {
-          return GuideRoute();
+          return IntroductionAnimationScreen();
         },
         settings: RouteSettings()));
     _timer.cancel();
@@ -69,7 +71,7 @@ class _SplashRouteState extends State<SplashRoute> {
 
   void startTimer() async {
     //调试过程中将开启时间 修改为3
-    _timer = new Timer(Duration(milliseconds: 0), () {
+    _timer = new Timer(Duration(milliseconds: 3000), () {
       if (isFirstOpen) {
         navigateToGuide();
       } else {

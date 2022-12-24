@@ -91,46 +91,46 @@ class LoginBtnIconWidget extends StatelessWidget {
             ],
           ),
           onTap: () {
-            final url = Uri.parse('http://114.132.183.187:9091/login');
-            // print(this.loginemailController.text);
-            // print(this.loginpasswordController.text);
-            http.post(url,
-                body: {'useremail': this.loginemailController.text,'userpassword':this.loginpasswordController.text})
-                .then((http.Response response) {
-              final Map<String, dynamic> responseData = json.decode(response.body);
+          final url = Uri.parse('http://114.132.183.187:9091/login');
+          // print(this.loginemailController.text);
+          // print(this.loginpasswordController.text);
+          http.post(url,
+              body: {'useremail': this.loginemailController.text,'userpassword':this.loginpasswordController.text})
+              .then((http.Response response) {
+            final Map<String, dynamic> responseData = json.decode(response.body);
 
-              //处理响应数据
-              if (responseData["code"]==200){
-                // showConfirmDialog(context, '注册成功，请保存好账户数据。返回登录界面登录', () {
-                //   Navigator.pop(context);
-                print(responseData);
-                print(responseData["data"]);
-                print(responseData["data"]["id"]);
+            //处理响应数据
+            if (responseData["code"]==200){
+              // showConfirmDialog(context, '注册成功，请保存好账户数据。返回登录界面登录', () {
+              //   Navigator.pop(context);
+              print(responseData);
+              print(responseData["data"]);
+              print(responseData["data"]["id"]);
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                       builder: (BuildContext context){
                         return MyApp(responseData["data"]["id"]);
                       }
                   ),
-                 (route) => false
+                      (route) => false
               );
 
-                  // 执行确定操作后的逻辑
-                // });
-              }
-              else if (responseData["code"]==0){
-                showConfirmDialog(context, '账号信息错误，请检查输入后重试', () {
-                  // Navigator.pop(context);
-                  // 执行确定操作后的逻辑
-                });
-              }
+              // 执行确定操作后的逻辑
+              // });
+            }
+            else if (responseData["code"]==0){
+              showConfirmDialog(context, '账号信息错误，请检查输入后重试', () {
+                // Navigator.pop(context);
+                // 执行确定操作后的逻辑
+              });
+            }
 
 
-            }).catchError((error) {
-              print('$error错误');
-            });
-            // Navigator.pop(context);
-          },
+          }).catchError((error) {
+            print('$error错误');
+          });
+          // Navigator.pop(context);
+        },
         )
       ],
     );

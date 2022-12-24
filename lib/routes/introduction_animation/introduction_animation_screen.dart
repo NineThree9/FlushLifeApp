@@ -7,6 +7,8 @@ import 'package:health/routes/introduction_animation/components/top_back_skip_vi
 import 'package:health/routes/introduction_animation/components/welcome_view.dart';
 import 'package:flutter/material.dart';
 
+import '../Total.dart';
+
 class IntroductionAnimationScreen extends StatefulWidget {
   const IntroductionAnimationScreen({Key key}) : super(key: key);
 
@@ -112,6 +114,13 @@ class _IntroductionAnimationScreenState
   }
 
   void _signUpClick() {
-    Navigator.pop(context);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+            builder: (BuildContext context){
+              return MyApp(null);
+            }
+        ),
+            (route) => false
+    );
   }
 }
